@@ -125,8 +125,9 @@ code:array_global = <undefined>;
 
 code:array_elem = array "[" index "]";
 
+//HACK: Conditions are assigned to `yystate` in loop/switch mode, so underlying type needs to be `UInt`.
 code:enum =
-    "enum " type ": Int {" nl indent
+    "enum " type ": " (.code_model.loop_switch & !.storable_state ? "UInt" : "Int") " {" nl indent
         [elem: topindent "case " elem (.init ? " = " init) nl]
     dedent "}" nl;
 
