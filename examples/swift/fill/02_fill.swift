@@ -29,7 +29,7 @@ extension Input {
 #sourceLocation(file: "02_fill.swift", line: 30)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         if self.yylimit <= self.yycursor {
@@ -40,16 +40,16 @@ extension Input {
         switch yych {
           case 0x00:
             yystate = 1
-            continue
+            continue yyl
           case 0x20:
             yystate = 3
-            continue
+            continue yyl
           case 0x27:
             yystate = 5
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 1:
 #sourceLocation(file: "02_fill.re", line: 31)
@@ -71,10 +71,10 @@ extension Input {
           case 0x20:
             self.yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             yystate = 4
-            continue
+            continue yyl
         }
       case 4:
 #sourceLocation(file: "02_fill.re", line: 39)
@@ -89,13 +89,13 @@ extension Input {
         switch yych {
           case 0x27:
             yystate = 6
-            continue
+            continue yyl
           case 0x5C:
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 6:
 #sourceLocation(file: "02_fill.re", line: 35)
@@ -110,7 +110,7 @@ extension Input {
         }
         self.yycursor += 1
         yystate = 5
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

@@ -13,7 +13,7 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
 
   
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yydebug()
@@ -24,15 +24,15 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
             fallthrough
           case 0x61...0x7A:
             yystate = 3
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yydebug()
         yystate = 2
-        continue
+        continue yyl
       case 2:
         yydebug()
         return false
@@ -44,10 +44,10 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x30...0x39:
             yyskip()
             yystate = 4
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         yydebug()
@@ -58,16 +58,16 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x61...0x7A:
             yyskip()
             yystate = 6
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 5:
         yydebug()
         yyrestore()
         yystate = 2
-        continue
+        continue yyl
       case 6:
         yydebug()
         yych = yypeek()
@@ -75,10 +75,10 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x30...0x39:
             yyskip()
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 7:
         yydebug()
@@ -87,10 +87,10 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x3B:
             yyskip()
             yystate = 8
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 8:
         yydebug()
@@ -105,10 +105,10 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x61...0x7A:
             yyskip()
             yystate = 9
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 9:
         yydebug()
@@ -123,10 +123,10 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x61...0x7A:
             yyskip()
             yystate = 9
-            continue
+            continue yyl
           default:
             yystate = 10
-            continue
+            continue yyl
         }
       case 10:
         yydebug()

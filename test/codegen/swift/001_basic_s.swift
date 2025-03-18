@@ -8,21 +8,21 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
 #sourceLocation(file: "001_basic_s.swift", line: 9)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = string[cursor]
         cursor += 1
         if yych <= 0x30 {
           yystate = 1
-          continue
+          continue yyl
         }
         if yych <= 0x39 {
           yystate = 2
-          continue
+          continue yyl
         }
         yystate = 1
-        continue
+        continue yyl
       case 1:
 #sourceLocation(file: "001_basic_s.re", line: 12)
         return false
@@ -31,15 +31,15 @@ func lex(_ string: UnsafeBufferPointer<UInt8>) -> Bool {
         yych = string[cursor]
         if yych <= 0x2F {
           yystate = 3
-          continue
+          continue yyl
         }
         if yych <= 0x39 {
           cursor += 1
           yystate = 2
-          continue
+          continue yyl
         }
         yystate = 3
-        continue
+        continue yyl
       case 3:
 #sourceLocation(file: "001_basic_s.re", line: 11)
         return true

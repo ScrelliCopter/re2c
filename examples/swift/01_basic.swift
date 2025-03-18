@@ -6,7 +6,7 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Bool {
   
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -14,10 +14,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Bool {
         switch yych {
           case 0x31...0x39:
             yystate = 2
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1: return false
       case 2:
@@ -26,10 +26,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Bool {
           case 0x30...0x39:
             yycursor += 1
             yystate = 2
-            continue
+            continue yyl
           default:
             yystate = 3
-            continue
+            continue yyl
         }
       case 3: return true
       default: fatalError("internal lexer error")

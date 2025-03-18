@@ -9,7 +9,7 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
 #sourceLocation(file: "001_basic_conv.swift", line: 10)
   var yych: Int8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = Int8(yyinput[yycursor])
@@ -17,10 +17,10 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
         switch yych {
           case 0x31...0x39:
             yystate = 2
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
 #sourceLocation(file: "001_basic_conv.re", line: 15)
@@ -32,10 +32,10 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x30...0x39:
             yycursor += 1
             yystate = 2
-            continue
+            continue yyl
           default:
             yystate = 3
-            continue
+            continue yyl
         }
       case 3:
 #sourceLocation(file: "001_basic_conv.re", line: 14)

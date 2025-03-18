@@ -14,7 +14,7 @@ func lex(_ str: Data) -> Int? {
 #sourceLocation(file: "05_fake_sentinel_eof_rule.swift", line: 15)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = cursor < limit ? str[cursor] : 0
@@ -22,23 +22,23 @@ func lex(_ str: Data) -> Int? {
           case 0x20:
             cursor += 1
             yystate = 3
-            continue
+            continue yyl
           case 0x27:
             cursor += 1
             yystate = 5
-            continue
+            continue yyl
           default:
             if limit <= cursor {
               yystate = 10
-              continue
+              continue yyl
             }
             cursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
 #sourceLocation(file: "05_fake_sentinel_eof_rule.re", line: 28)
         return nil
@@ -49,10 +49,10 @@ func lex(_ str: Data) -> Int? {
           case 0x20:
             cursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             yystate = 4
-            continue
+            continue yyl
         }
       case 4:
 #sourceLocation(file: "05_fake_sentinel_eof_rule.re", line: 26)
@@ -63,37 +63,37 @@ func lex(_ str: Data) -> Int? {
         yych = cursor < limit ? str[cursor] : 0
         if yych >= 0x01 {
           yystate = 7
-          continue
+          continue yyl
         }
         if limit <= cursor {
           yystate = 2
-          continue
+          continue yyl
         }
         cursor += 1
         yystate = 6
-        continue
+        continue yyl
       case 6:
         yych = cursor < limit ? str[cursor] : 0
         yystate = 7
-        continue
+        continue yyl
       case 7:
         switch yych {
           case 0x27:
             cursor += 1
             yystate = 8
-            continue
+            continue yyl
           case 0x5C:
             cursor += 1
             yystate = 9
-            continue
+            continue yyl
           default:
             if limit <= cursor {
               yystate = 11
-              continue
+              continue yyl
             }
             cursor += 1
             yystate = 6
-            continue
+            continue yyl
         }
       case 8:
 #sourceLocation(file: "05_fake_sentinel_eof_rule.re", line: 22)
@@ -107,15 +107,15 @@ func lex(_ str: Data) -> Int? {
         if yych <= 0x00 {
           if limit <= cursor {
             yystate = 11
-            continue
+            continue yyl
           }
           cursor += 1
           yystate = 6
-          continue
+          continue yyl
         }
         cursor += 1
         yystate = 6
-        continue
+        continue yyl
       case 10:
 #sourceLocation(file: "05_fake_sentinel_eof_rule.re", line: 27)
         return count
@@ -123,7 +123,7 @@ func lex(_ str: Data) -> Int? {
       case 11:
         cursor = marker
         yystate = 2
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

@@ -74,7 +74,7 @@ enum YYCondType: Int {
     
 #sourceLocation(file: "advanced.swift", line: 76)
   var yystate: Int = self.yystate
-  while true {
+  yyl: while true {
     switch yystate {
       case -1...0:
         yych = self.buffer[self.yycursor]
@@ -99,7 +99,7 @@ enum YYCondType: Int {
             self.yyt1 = self.yycursor
             self.yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 44
@@ -107,11 +107,11 @@ enum YYCondType: Int {
             }
             self.yycursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
         self.yystate = YYCondType.yycmedia_type.rawValue
 #sourceLocation(file: "advanced.re", line: 115)
@@ -137,19 +137,19 @@ enum YYCondType: Int {
             fallthrough
           case 0x7E:
             yystate = 5
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 45
               return .waiting
             }
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         yych = self.buffer[self.yycursor]
         yystate = 5
-        continue
+        continue yyl
       case 5:
         switch yych {
           case 0x21:
@@ -171,23 +171,23 @@ enum YYCondType: Int {
           case 0x7E:
             self.yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x2F:
             self.yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 46
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 6:
         self.yycursor = self.yymarker
         yystate = 2
-        continue
+        continue yyl
       case 7:
         yych = self.buffer[self.yycursor]
         switch yych {
@@ -205,15 +205,15 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 8:
         yych = self.buffer[self.yycursor]
         yystate = 9
-        continue
+        continue yyl
       case 9:
         switch yych {
           case 0x09:
@@ -230,7 +230,7 @@ enum YYCondType: Int {
             self.yyt2 = self.yycursor
             self.yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           case 0x0D:
             self.yytm6 = self.yytm10
             self.yytm6 = self.add(tag: self.yytm6, value: Self.tagNone)
@@ -243,7 +243,7 @@ enum YYCondType: Int {
             self.yyt2 = self.yycursor
             self.yycursor += 1
             yystate = 11
-            continue
+            continue yyl
           case 0x21:
             fallthrough
           case 0x23...0x27:
@@ -263,19 +263,19 @@ enum YYCondType: Int {
           case 0x7E:
             self.yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           case 0x3B:
             self.yyt2 = self.yycursor
             self.yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 48
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 10:
         yych = self.buffer[self.yycursor]
@@ -285,22 +285,22 @@ enum YYCondType: Int {
           case 0x20:
             self.yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           case 0x0D:
             self.yycursor += 1
             yystate = 11
-            continue
+            continue yyl
           case 0x3B:
             self.yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 49
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 11:
         yych = self.buffer[self.yycursor]
@@ -308,14 +308,14 @@ enum YYCondType: Int {
           case 0x0A:
             self.yycursor += 1
             yystate = 13
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 50
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 12:
         yych = self.buffer[self.yycursor]
@@ -325,7 +325,7 @@ enum YYCondType: Int {
           case 0x20:
             self.yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           case 0x21:
             fallthrough
           case 0x23...0x27:
@@ -346,14 +346,14 @@ enum YYCondType: Int {
             self.yytm7 = self.add(tag: self.yytm7, value: self.yycursor)
             self.yycursor += 1
             yystate = 14
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 51
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 13:
         l1 = self.yyt1
@@ -403,19 +403,19 @@ enum YYCondType: Int {
           case 0x7E:
             self.yycursor += 1
             yystate = 14
-            continue
+            continue yyl
           case 0x3D:
             self.yytm8 = self.add(tag: self.yytm8, value: self.yycursor)
             self.yycursor += 1
             yystate = 15
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 52
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 15:
         yych = self.buffer[self.yycursor]
@@ -440,19 +440,19 @@ enum YYCondType: Int {
             self.yytm9 = self.add(tag: self.yytm9, value: self.yycursor)
             self.yycursor += 1
             yystate = 16
-            continue
+            continue yyl
           case 0x22:
             self.yytm9 = self.add(tag: self.yytm9, value: self.yycursor)
             self.yycursor += 1
             yystate = 17
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 53
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 16:
         yych = self.buffer[self.yycursor]
@@ -463,7 +463,7 @@ enum YYCondType: Int {
             self.yytm10 = self.add(tag: self.yytm10, value: self.yycursor)
             self.yycursor += 1
             yystate = 18
-            continue
+            continue yyl
           case 0x0D:
             self.yytm3 = self.yytm7
             self.yytm4 = self.yytm8
@@ -472,7 +472,7 @@ enum YYCondType: Int {
             self.yytm6 = self.add(tag: self.yytm6, value: self.yycursor)
             self.yycursor += 1
             yystate = 11
-            continue
+            continue yyl
           case 0x21:
             fallthrough
           case 0x23...0x27:
@@ -492,19 +492,19 @@ enum YYCondType: Int {
           case 0x7E:
             self.yycursor += 1
             yystate = 16
-            continue
+            continue yyl
           case 0x3B:
             self.yytm10 = self.add(tag: self.yytm10, value: self.yycursor)
             self.yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 54
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 17:
         yych = self.buffer[self.yycursor]
@@ -521,19 +521,19 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
           case 0x22:
             self.yycursor += 1
             yystate = 19
-            continue
+            continue yyl
           case 0x5C:
             self.yycursor += 1
             yystate = 20
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 17
-            continue
+            continue yyl
         }
       case 18:
         yych = self.buffer[self.yycursor]
@@ -543,7 +543,7 @@ enum YYCondType: Int {
           case 0x20:
             self.yycursor += 1
             yystate = 18
-            continue
+            continue yyl
           case 0x0D:
             self.yytm3 = self.yytm7
             self.yytm4 = self.yytm8
@@ -551,18 +551,18 @@ enum YYCondType: Int {
             self.yytm6 = self.yytm10
             self.yycursor += 1
             yystate = 11
-            continue
+            continue yyl
           case 0x3B:
             self.yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 56
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 19:
         yych = self.buffer[self.yycursor]
@@ -573,7 +573,7 @@ enum YYCondType: Int {
             self.yytm10 = self.add(tag: self.yytm10, value: self.yycursor)
             self.yycursor += 1
             yystate = 18
-            continue
+            continue yyl
           case 0x0D:
             self.yytm3 = self.yytm7
             self.yytm4 = self.yytm8
@@ -582,19 +582,19 @@ enum YYCondType: Int {
             self.yytm6 = self.add(tag: self.yytm6, value: self.yycursor)
             self.yycursor += 1
             yystate = 11
-            continue
+            continue yyl
           case 0x3B:
             self.yytm10 = self.add(tag: self.yytm10, value: self.yycursor)
             self.yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 57
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 20:
         yych = self.buffer[self.yycursor]
@@ -611,11 +611,11 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 17
-            continue
+            continue yyl
         }
       case 21:
         self.yystate = YYCondType.yycmedia_type.rawValue
@@ -638,20 +638,20 @@ enum YYCondType: Int {
             }
             self.yycursor += 1
             yystate = 23
-            continue
+            continue yyl
           case 0x0D:
             self.yytm1 = self.add(tag: self.yytm1, value: self.yycursor)
             self.yycursor += 1
             yystate = 25
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 26
-            continue
+            continue yyl
         }
       case 23:
         yystate = 24
-        continue
+        continue yyl
       case 24:
         self.yystate = YYCondType.yycheader.rawValue
 #sourceLocation(file: "advanced.re", line: 115)
@@ -665,14 +665,14 @@ enum YYCondType: Int {
           case 0x0A:
             self.yycursor += 1
             yystate = 27
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 60
               return .waiting
             }
             yystate = 24
-            continue
+            continue yyl
         }
       case 26:
         self.yyaccept = 0
@@ -693,20 +693,20 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 24
-            continue
+            continue yyl
           case 0x09:
             self.yycursor += 1
             yystate = 29
-            continue
+            continue yyl
           case 0x0D:
             self.yytm1 = self.add(tag: self.yytm1, value: self.yycursor)
             self.yycursor += 1
             yystate = 30
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 31
-            continue
+            continue yyl
         }
       case 27:
         yych = self.buffer[self.yycursor]
@@ -716,23 +716,23 @@ enum YYCondType: Int {
           case 0x20:
             self.yycursor += 1
             yystate = 32
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 62
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
         }
       case 28:
         self.yycursor = self.yymarker
         if self.yyaccept == 0 {
           yystate = 24
-          continue
+          continue yyl
         } else {
           yystate = 37
-          continue
+          continue yyl
         }
       case 29:
         yych = self.buffer[self.yycursor]
@@ -749,19 +749,19 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
           case 0x09:
             self.yycursor += 1
             yystate = 29
-            continue
+            continue yyl
           case 0x20:
             self.yycursor += 1
             yystate = 31
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 33
-            continue
+            continue yyl
         }
       case 30:
         yych = self.buffer[self.yycursor]
@@ -769,14 +769,14 @@ enum YYCondType: Int {
           case 0x0A:
             self.yycursor += 1
             yystate = 27
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 64
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
         }
       case 31:
         yych = self.buffer[self.yycursor]
@@ -795,20 +795,20 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
           case 0x09:
             self.yycursor += 1
             yystate = 29
-            continue
+            continue yyl
           case 0x0D:
             self.yytm1 = self.add(tag: self.yytm1, value: self.yycursor)
             self.yycursor += 1
             yystate = 30
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 31
-            continue
+            continue yyl
         }
       case 32:
         yych = self.buffer[self.yycursor]
@@ -827,25 +827,25 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
           case 0x09:
             fallthrough
           case 0x20:
             self.yycursor += 1
             yystate = 32
-            continue
+            continue yyl
           case 0x0D:
             self.yytm3 = self.add(tag: self.yytm3, value: self.yycursor)
             self.yytm2 = self.yytm1
             self.yytm2 = self.add(tag: self.yytm2, value: self.yycursor)
             self.yycursor += 1
             yystate = 34
-            continue
+            continue yyl
           default:
             self.yytm3 = self.add(tag: self.yytm3, value: self.yycursor)
             self.yycursor += 1
             yystate = 35
-            continue
+            continue yyl
         }
       case 33:
         yych = self.buffer[self.yycursor]
@@ -862,16 +862,16 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
           case 0x0D:
             self.yytm1 = self.add(tag: self.yytm1, value: self.yycursor)
             self.yycursor += 1
             yystate = 30
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 31
-            continue
+            continue yyl
         }
       case 34:
         yych = self.buffer[self.yycursor]
@@ -879,14 +879,14 @@ enum YYCondType: Int {
           case 0x0A:
             self.yycursor += 1
             yystate = 36
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 68
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
         }
       case 35:
         yych = self.buffer[self.yycursor]
@@ -905,21 +905,21 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
           case 0x09:
             self.yycursor += 1
             yystate = 38
-            continue
+            continue yyl
           case 0x0D:
             self.yytm2 = self.yytm1
             self.yytm2 = self.add(tag: self.yytm2, value: self.yycursor)
             self.yycursor += 1
             yystate = 34
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 35
-            continue
+            continue yyl
         }
       case 36:
         self.yyaccept = 1
@@ -932,14 +932,14 @@ enum YYCondType: Int {
             self.yytm1 = self.yytm2
             self.yycursor += 1
             yystate = 32
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 70
               return .waiting
             }
             yystate = 37
-            continue
+            continue yyl
         }
       case 37:
         f1 = self.yytm1
@@ -974,23 +974,23 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
           case 0x09:
             self.yycursor += 1
             yystate = 38
-            continue
+            continue yyl
           case 0x0D:
             self.yycursor += 1
             yystate = 39
-            continue
+            continue yyl
           case 0x20:
             self.yycursor += 1
             yystate = 35
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 40
-            continue
+            continue yyl
         }
       case 39:
         yych = self.buffer[self.yycursor]
@@ -998,14 +998,14 @@ enum YYCondType: Int {
           case 0x0A:
             self.yycursor += 1
             yystate = 41
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 72
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
         }
       case 40:
         yych = self.buffer[self.yycursor]
@@ -1024,25 +1024,25 @@ enum YYCondType: Int {
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
           case 0x09:
             self.yycursor += 1
             yystate = 42
-            continue
+            continue yyl
           case 0x0D:
             self.yytm2 = self.yytm1
             self.yytm2 = self.add(tag: self.yytm2, value: self.yycursor)
             self.yycursor += 1
             yystate = 34
-            continue
+            continue yyl
           default:
             self.yycursor += 1
             yystate = 35
-            continue
+            continue yyl
         }
       case 41:
         yystate = 37
-        continue
+        continue yyl
       case 42:
         yych = self.buffer[self.yycursor]
         switch yych {
@@ -1051,18 +1051,18 @@ enum YYCondType: Int {
           case 0x20:
             self.yycursor += 1
             yystate = 42
-            continue
+            continue yyl
           case 0x0D:
             self.yycursor += 1
             yystate = 39
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 74
               return .waiting
             }
             yystate = 28
-            continue
+            continue yyl
         }
       case 43:
         self.yystate = YYCondType.yycheader.rawValue
@@ -1072,220 +1072,220 @@ enum YYCondType: Int {
       case 44:
         if self.yylimit <= self.yycursor {
           yystate = 21
-          continue
+          continue yyl
         }
         yystate = 0
-        continue
+        continue yyl
       case 45:
         if self.yylimit <= self.yycursor {
           yystate = 2
-          continue
+          continue yyl
         }
         yystate = 3
-        continue
+        continue yyl
       case 46:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 4
-        continue
+        continue yyl
       case 47:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 7
-        continue
+        continue yyl
       case 48:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 8
-        continue
+        continue yyl
       case 49:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 10
-        continue
+        continue yyl
       case 50:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 11
-        continue
+        continue yyl
       case 51:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 12
-        continue
+        continue yyl
       case 52:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 14
-        continue
+        continue yyl
       case 53:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 15
-        continue
+        continue yyl
       case 54:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 16
-        continue
+        continue yyl
       case 55:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 17
-        continue
+        continue yyl
       case 56:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 18
-        continue
+        continue yyl
       case 57:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 19
-        continue
+        continue yyl
       case 58:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 20
-        continue
+        continue yyl
       case 59:
         if self.yylimit <= self.yycursor {
           yystate = 43
-          continue
+          continue yyl
         }
         yystate = 22
-        continue
+        continue yyl
       case 60:
         if self.yylimit <= self.yycursor {
           yystate = 24
-          continue
+          continue yyl
         }
         yystate = 25
-        continue
+        continue yyl
       case 61:
         if self.yylimit <= self.yycursor {
           yystate = 24
-          continue
+          continue yyl
         }
         yystate = 26
-        continue
+        continue yyl
       case 62:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 27
-        continue
+        continue yyl
       case 63:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 29
-        continue
+        continue yyl
       case 64:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 30
-        continue
+        continue yyl
       case 65:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 31
-        continue
+        continue yyl
       case 66:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 32
-        continue
+        continue yyl
       case 67:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 33
-        continue
+        continue yyl
       case 68:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 34
-        continue
+        continue yyl
       case 69:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 35
-        continue
+        continue yyl
       case 70:
         if self.yylimit <= self.yycursor {
           yystate = 37
-          continue
+          continue yyl
         }
         yystate = 36
-        continue
+        continue yyl
       case 71:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 38
-        continue
+        continue yyl
       case 72:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 39
-        continue
+        continue yyl
       case 73:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 40
-        continue
+        continue yyl
       case 74:
         if self.yylimit <= self.yycursor {
           yystate = 28
-          continue
+          continue yyl
         }
         yystate = 42
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

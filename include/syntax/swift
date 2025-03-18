@@ -105,7 +105,7 @@ re2c:indent:string = "  ";
 re2c:indent:top = 0;
 re2c:label:prefix = "yy";
 re2c:label:yyfill = "";
-re2c:label:yyloop = "";
+re2c:label:yyloop = "yyl";
 re2c:label:yyNext = "";
 re2c:label:start = 0;
 

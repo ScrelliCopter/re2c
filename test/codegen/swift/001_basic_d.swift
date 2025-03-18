@@ -9,7 +9,7 @@ func lex(_ s: UnsafeBufferPointer<UInt8>) -> Bool {
 #sourceLocation(file: "001_basic_d.swift", line: 10)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         print("lex: '\(yych)' int state \(0)")
@@ -18,15 +18,15 @@ func lex(_ s: UnsafeBufferPointer<UInt8>) -> Bool {
         switch yych {
           case 0x30...0x39:
             yystate = 3
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         print("lex: '\(yych)' int state \(1)")
         yystate = 2
-        continue
+        continue yyl
       case 2:
         print("lex: '\(yych)' int state \(2)")
 #sourceLocation(file: "001_basic_d.re", line: 18)
@@ -40,14 +40,14 @@ func lex(_ s: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x00:
             cursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x30...0x39:
             cursor += 1
             yystate = 5
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         print("lex: '\(yych)' int state \(4)")
@@ -61,20 +61,20 @@ func lex(_ s: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x00:
             cursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x30...0x39:
             cursor += 1
             yystate = 5
-            continue
+            continue yyl
           default:
             yystate = 6
-            continue
+            continue yyl
         }
       case 6:
         print("lex: '\(yych)' int state \(6)")
         cursor = marker
         yystate = 2
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

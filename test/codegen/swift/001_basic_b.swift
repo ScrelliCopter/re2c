@@ -42,21 +42,21 @@ func lex(_ s: UnsafeBufferPointer<UInt8>) -> Bool {
       0,   0,   0,   0,   0,   0,   0,   0,
       0,   0,   0,   0,   0,   0,   0,   0,
   ]
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = s[cursor]
         cursor += 1
         if yych <= 0x30 {
           yystate = 1
-          continue
+          continue yyl
         }
         if yych <= 0x39 {
           yystate = 2
-          continue
+          continue yyl
         }
         yystate = 1
-        continue
+        continue yyl
       case 1:
 #sourceLocation(file: "001_basic_b.re", line: 14)
         return false
@@ -66,7 +66,7 @@ func lex(_ s: UnsafeBufferPointer<UInt8>) -> Bool {
         if (yybm[0 + Int(yych)] & 128) != 0 {
           cursor += 1
           yystate = 2
-          continue
+          continue yyl
         }
 #sourceLocation(file: "001_basic_b.re", line: 13)
         return true

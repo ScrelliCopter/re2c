@@ -25,7 +25,7 @@ extension Input {
 #sourceLocation(file: "01_fill.swift", line: 26)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = self.buffer[self.yycursor]
@@ -33,27 +33,27 @@ extension Input {
           case 0x20:
             self.yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           case 0x27:
             self.yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 0
-                continue
+                continue yyl
               }
               yystate = 10
-              continue
+              continue yyl
             }
             self.yycursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
 #sourceLocation(file: "01_fill.re", line: 37)
         return nil
@@ -64,16 +64,16 @@ extension Input {
           case 0x20:
             self.yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 3
-                continue
+                continue yyl
               }
             }
             yystate = 4
-            continue
+            continue yyl
         }
       case 4:
 #sourceLocation(file: "01_fill.re", line: 35)
@@ -84,45 +84,45 @@ extension Input {
         yych = self.buffer[self.yycursor]
         if yych >= 0x01 {
           yystate = 7
-          continue
+          continue yyl
         }
         if self.yylimit <= self.yycursor {
           if self.fill() == .ok {
             yystate = 5
-            continue
+            continue yyl
           }
           yystate = 2
-          continue
+          continue yyl
         }
         self.yycursor += 1
         yystate = 6
-        continue
+        continue yyl
       case 6:
         yych = self.buffer[self.yycursor]
         yystate = 7
-        continue
+        continue yyl
       case 7:
         switch yych {
           case 0x27:
             self.yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           case 0x5C:
             self.yycursor += 1
             yystate = 9
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 6
-                continue
+                continue yyl
               }
               yystate = 11
-              continue
+              continue yyl
             }
             self.yycursor += 1
             yystate = 6
-            continue
+            continue yyl
         }
       case 8:
 #sourceLocation(file: "01_fill.re", line: 31)
@@ -137,18 +137,18 @@ extension Input {
           if self.yylimit <= self.yycursor {
             if self.fill() == .ok {
               yystate = 9
-              continue
+              continue yyl
             }
             yystate = 11
-            continue
+            continue yyl
           }
           self.yycursor += 1
           yystate = 6
-          continue
+          continue yyl
         }
         self.yycursor += 1
         yystate = 6
-        continue
+        continue yyl
       case 10:
 #sourceLocation(file: "01_fill.re", line: 36)
         return count
@@ -156,7 +156,7 @@ extension Input {
       case 11:
         self.yycursor = self.yymarker
         yystate = 2
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

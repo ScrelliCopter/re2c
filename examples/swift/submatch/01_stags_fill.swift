@@ -49,7 +49,7 @@ extension Input {
 #sourceLocation(file: "01_stags_fill.swift", line: 50)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = self.yyinput[self.yycursor]
@@ -57,23 +57,23 @@ extension Input {
           case 0x30...0x39:
             self.yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 0
-                continue
+                continue yyl
               }
               yystate = 11
-              continue
+              continue yyl
             }
             self.yycursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
 #sourceLocation(file: "01_stags_fill.re", line: 51)
         return nil
@@ -85,20 +85,20 @@ extension Input {
           case 0x2E:
             self.yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x30...0x39:
             self.yycursor += 1
             yystate = 6
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 3
-                continue
+                continue yyl
               }
             }
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         yych = self.yyinput[self.yycursor]
@@ -107,41 +107,41 @@ extension Input {
             self.yyt1 = self.yycursor
             self.yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 4
-                continue
+                continue yyl
               }
             }
             yystate = 5
-            continue
+            continue yyl
         }
       case 5:
         self.yycursor = self.yymarker
         yystate = 2
-        continue
+        continue yyl
       case 6:
         yych = self.yyinput[self.yycursor]
         switch yych {
           case 0x2E:
             self.yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x30...0x39:
             self.yycursor += 1
             yystate = 6
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 6
-                continue
+                continue yyl
               }
             }
             yystate = 5
-            continue
+            continue yyl
         }
       case 7:
         yych = self.yyinput[self.yycursor]
@@ -151,25 +151,25 @@ extension Input {
             self.yyt3 = -1
             self.yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           case 0x2E:
             self.yyt2 = self.yycursor
             self.yycursor += 1
             yystate = 9
-            continue
+            continue yyl
           case 0x30...0x39:
             self.yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 7
-                continue
+                continue yyl
               }
             }
             yystate = 5
-            continue
+            continue yyl
         }
       case 8:
         t2 = self.yyt1
@@ -194,16 +194,16 @@ extension Input {
             self.yyt3 = self.yycursor
             self.yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 9
-                continue
+                continue yyl
               }
             }
             yystate = 5
-            continue
+            continue yyl
         }
       case 10:
         yych = self.yyinput[self.yycursor]
@@ -211,20 +211,20 @@ extension Input {
           case 0x0A:
             self.yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           case 0x30...0x39:
             self.yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               if self.fill() == .ok {
                 yystate = 10
-                continue
+                continue yyl
               }
             }
             yystate = 5
-            continue
+            continue yyl
         }
       case 11:
 #sourceLocation(file: "01_stags_fill.re", line: 50)

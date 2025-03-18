@@ -6,7 +6,7 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
   
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -14,14 +14,14 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
         switch yych {
           case 0x07:
             yystate = 3
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2: 
       let _: [UnicodeScalar] = [ "\u{7}", "\u{8}", "\t", "\n", "\u{B}", "\u{C}", "\r", "\"", "\\" ]
       return false
@@ -33,10 +33,10 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x08:
             yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         yych = yyinput[yycursor]
@@ -44,25 +44,25 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x09:
             yycursor += 1
             yystate = 6
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 5:
         yycursor = yymarker
         yystate = 2
-        continue
+        continue yyl
       case 6:
         yych = yyinput[yycursor]
         switch yych {
           case 0x0A:
             yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 7:
         yych = yyinput[yycursor]
@@ -70,10 +70,10 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x0B:
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 8:
         yych = yyinput[yycursor]
@@ -81,10 +81,10 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x0C:
             yycursor += 1
             yystate = 9
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 9:
         yych = yyinput[yycursor]
@@ -92,10 +92,10 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x0D:
             yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 10:
         yych = yyinput[yycursor]
@@ -103,10 +103,10 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x22:
             yycursor += 1
             yystate = 11
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 11:
         yych = yyinput[yycursor]
@@ -114,10 +114,10 @@ func lex(_ yyinput: UnsafeBufferPointer<UInt8>) -> Bool {
           case 0x5C:
             yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 12: return true
       default: fatalError("internal lexer error")

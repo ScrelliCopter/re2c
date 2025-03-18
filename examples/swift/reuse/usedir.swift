@@ -20,7 +20,7 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
 #sourceLocation(file: "usedir.swift", line: 21)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -28,26 +28,26 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
         switch yych {
           case 0x65:
             yystate = 3
-            continue
+            continue yyl
           case 0x68:
             yystate = 4
-            continue
+            continue yyl
           case 0x6D:
             yystate = 5
-            continue
+            continue yyl
           case 0x72:
             yystate = 6
-            continue
+            continue yyl
           case 0x73:
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
 #sourceLocation(file: "usedir.re", line: 26)
         return .dunno
@@ -59,10 +59,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x65:
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         yymarker = yycursor
@@ -71,10 +71,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x61:
             yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 5:
         yymarker = yycursor
@@ -83,10 +83,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x61:
             yycursor += 1
             yystate = 11
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 6:
         yymarker = yycursor
@@ -95,10 +95,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x65:
             yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 7:
         yymarker = yycursor
@@ -107,10 +107,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x61:
             yycursor += 1
             yystate = 13
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 8:
         yych = yyinput[yycursor]
@@ -118,25 +118,25 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x6C:
             yycursor += 1
             yystate = 14
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 9:
         yycursor = yymarker
         yystate = 2
-        continue
+        continue yyl
       case 10:
         yych = yyinput[yycursor]
         switch yych {
           case 0x64:
             yycursor += 1
             yystate = 15
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 11:
         yych = yyinput[yycursor]
@@ -144,10 +144,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x67:
             yycursor += 1
             yystate = 16
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 12:
         yych = yyinput[yycursor]
@@ -155,10 +155,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x64:
             yycursor += 1
             yystate = 17
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 13:
         yych = yyinput[yycursor]
@@ -166,10 +166,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x6C:
             yycursor += 1
             yystate = 18
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 14:
 #sourceLocation(file: "usedir.re", line: 16)
@@ -181,10 +181,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x64:
             yycursor += 1
             yystate = 19
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 16:
         yych = yyinput[yycursor]
@@ -192,10 +192,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x65:
             yycursor += 1
             yystate = 20
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 17:
 #sourceLocation(file: "usedir.re", line: 11)
@@ -207,10 +207,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x6D:
             yycursor += 1
             yystate = 21
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 19:
         yych = yyinput[yycursor]
@@ -218,10 +218,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x6F:
             yycursor += 1
             yystate = 22
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 20:
         yych = yyinput[yycursor]
@@ -229,10 +229,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x6E:
             yycursor += 1
             yystate = 23
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 21:
         yych = yyinput[yycursor]
@@ -240,10 +240,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x6F:
             yycursor += 1
             yystate = 24
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 22:
         yych = yyinput[yycursor]
@@ -251,10 +251,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x63:
             yycursor += 1
             yystate = 25
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 23:
         yych = yyinput[yycursor]
@@ -262,10 +262,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x74:
             yycursor += 1
             yystate = 26
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 24:
         yych = yyinput[yycursor]
@@ -273,10 +273,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x6E:
             yycursor += 1
             yystate = 14
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 25:
         yych = yyinput[yycursor]
@@ -284,10 +284,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x6B:
             yycursor += 1
             yystate = 14
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       case 26:
         yych = yyinput[yycursor]
@@ -295,10 +295,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
           case 0x61:
             yycursor += 1
             yystate = 17
-            continue
+            continue yyl
           default:
             yystate = 9
-            continue
+            continue yyl
         }
       default: fatalError("internal lexer error")
     }

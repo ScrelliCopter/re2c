@@ -12,7 +12,7 @@ func lex(_ yyinput: UnsafePointer<UInt8>, _ length: Int) -> Int? {
 #sourceLocation(file: "03_eof_rule.swift", line: 13)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -20,23 +20,23 @@ func lex(_ yyinput: UnsafePointer<UInt8>, _ length: Int) -> Int? {
           case 0x20:
             yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           case 0x27:
             yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           default:
             if yylimit <= yycursor {
               yystate = 10
-              continue
+              continue yyl
             }
             yycursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
 #sourceLocation(file: "03_eof_rule.re", line: 20)
         return nil
@@ -47,10 +47,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>, _ length: Int) -> Int? {
           case 0x20:
             yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             yystate = 4
-            continue
+            continue yyl
         }
       case 4:
 #sourceLocation(file: "03_eof_rule.re", line: 19)
@@ -61,37 +61,37 @@ func lex(_ yyinput: UnsafePointer<UInt8>, _ length: Int) -> Int? {
         yych = yyinput[yycursor]
         if yych >= 0x01 {
           yystate = 7
-          continue
+          continue yyl
         }
         if yylimit <= yycursor {
           yystate = 2
-          continue
+          continue yyl
         }
         yycursor += 1
         yystate = 6
-        continue
+        continue yyl
       case 6:
         yych = yyinput[yycursor]
         yystate = 7
-        continue
+        continue yyl
       case 7:
         switch yych {
           case 0x27:
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           case 0x5C:
             yycursor += 1
             yystate = 9
-            continue
+            continue yyl
           default:
             if yylimit <= yycursor {
               yystate = 11
-              continue
+              continue yyl
             }
             yycursor += 1
             yystate = 6
-            continue
+            continue yyl
         }
       case 8:
 #sourceLocation(file: "03_eof_rule.re", line: 15)
@@ -105,15 +105,15 @@ func lex(_ yyinput: UnsafePointer<UInt8>, _ length: Int) -> Int? {
         if yych <= 0x00 {
           if yylimit <= yycursor {
             yystate = 11
-            continue
+            continue yyl
           }
           yycursor += 1
           yystate = 6
-          continue
+          continue yyl
         }
         yycursor += 1
         yystate = 6
-        continue
+        continue yyl
       case 10:
 #sourceLocation(file: "03_eof_rule.re", line: 21)
         return count
@@ -121,7 +121,7 @@ func lex(_ yyinput: UnsafePointer<UInt8>, _ length: Int) -> Int? {
       case 11:
         yycursor = yymarker
         yystate = 2
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

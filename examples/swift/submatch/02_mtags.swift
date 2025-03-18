@@ -44,7 +44,7 @@ func parse(_ yyinput: UnsafePointer<UInt8>) -> Ver? {
 #sourceLocation(file: "02_mtags.swift", line: 45)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -53,15 +53,15 @@ func parse(_ yyinput: UnsafePointer<UInt8>) -> Ver? {
             yyt1 = yycursor
             yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             yycursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
 #sourceLocation(file: "02_mtags.re", line: 36)
         return nil
@@ -76,19 +76,19 @@ func parse(_ yyinput: UnsafePointer<UInt8>) -> Ver? {
             yyt2 = yycursor
             yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x2E:
             yyt2 = yycursor
             yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           case 0x30...0x39:
             yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         t1 = yyt1
@@ -109,15 +109,15 @@ func parse(_ yyinput: UnsafePointer<UInt8>) -> Ver? {
             yytm3 = add(tag: yytm3, value: yycursor)
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           default:
             yystate = 6
-            continue
+            continue yyl
         }
       case 6:
         yycursor = yymarker
         yystate = 2
-        continue
+        continue yyl
       case 7:
         yych = yyinput[yycursor]
         switch yych {
@@ -127,19 +127,19 @@ func parse(_ yyinput: UnsafePointer<UInt8>) -> Ver? {
             yyt2 = yycursor
             yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x2E:
             yyt2 = yycursor
             yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           case 0x30...0x39:
             yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 6
-            continue
+            continue yyl
         }
       case 8:
         yych = yyinput[yycursor]
@@ -148,19 +148,19 @@ func parse(_ yyinput: UnsafePointer<UInt8>) -> Ver? {
             yytm4 = add(tag: yytm4, value: yycursor)
             yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x2E:
             yytm4 = add(tag: yytm4, value: yycursor)
             yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           case 0x30...0x39:
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           default:
             yystate = 6
-            continue
+            continue yyl
         }
       default: fatalError("internal lexer error")
     }

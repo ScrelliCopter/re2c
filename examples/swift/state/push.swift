@@ -40,7 +40,7 @@ extension State {
       
 #sourceLocation(file: "push.swift", line: 42)
   var yystate: Int = self.yystate
-  while true {
+  yyl: while true {
     switch yystate {
       case -1...0:
         yych = self.yyinput[self.yycursor]
@@ -48,7 +48,7 @@ extension State {
           case 0x61...0x7A:
             self.yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 8
@@ -56,11 +56,11 @@ extension State {
             }
             self.yycursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
         self.yystate = -1
 #sourceLocation(file: "push.re", line: 46)
@@ -73,18 +73,18 @@ extension State {
           case 0x3B:
             self.yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x61...0x7A:
             self.yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 9
               return .waiting
             }
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         self.yystate = -1
@@ -100,23 +100,23 @@ extension State {
           case 0x3B:
             self.yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x61...0x7A:
             self.yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           default:
             if self.yylimit <= self.yycursor {
               self.yystate = 10
               return .waiting
             }
             yystate = 6
-            continue
+            continue yyl
         }
       case 6:
         self.yycursor = self.yymarker
         yystate = 2
-        continue
+        continue yyl
       case 7:
         self.yystate = -1
 #sourceLocation(file: "push.re", line: 47)
@@ -125,24 +125,24 @@ extension State {
       case 8:
         if self.yylimit <= self.yycursor {
           yystate = 7
-          continue
+          continue yyl
         }
         yystate = 0
-        continue
+        continue yyl
       case 9:
         if self.yylimit <= self.yycursor {
           yystate = 2
-          continue
+          continue yyl
         }
         yystate = 3
-        continue
+        continue yyl
       case 10:
         if self.yylimit <= self.yycursor {
           yystate = 6
-          continue
+          continue yyl
         }
         yystate = 5
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

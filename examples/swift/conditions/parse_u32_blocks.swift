@@ -9,7 +9,7 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
 #sourceLocation(file: "parse_u32_blocks.swift", line: 10)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -17,13 +17,13 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
         switch yych {
           case 0x30:
             yystate = 2
-            continue
+            continue yyl
           case 0x31...0x39:
             yystate = 4
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
 #sourceLocation(file: "parse_u32_blocks.re", line: 13)
@@ -36,14 +36,14 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
           case 0x62:
             yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           case 0x78:
             yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 3
-            continue
+            continue yyl
         }
       case 3:
 #sourceLocation(file: "parse_u32_blocks.re", line: 10)
@@ -60,15 +60,15 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
           case 0x30...0x31:
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           default:
             yystate = 6
-            continue
+            continue yyl
         }
       case 6:
         yycursor = yymarker
         yystate = 3
-        continue
+        continue yyl
       case 7:
         yych = yyinput[yycursor]
         switch yych {
@@ -79,10 +79,10 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
           case 0x61...0x66:
             yycursor += 1
             yystate = 9
-            continue
+            continue yyl
           default:
             yystate = 6
-            continue
+            continue yyl
         }
       case 8:
         yycursor -= 1
@@ -112,7 +112,7 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
 #sourceLocation(file: "parse_u32_blocks.swift", line: 113)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -120,10 +120,10 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
         switch yych {
           case 0x30...0x31:
             yystate = 2
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
 #sourceLocation(file: "parse_u32_blocks.re", line: 26)
@@ -147,7 +147,7 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
 #sourceLocation(file: "parse_u32_blocks.swift", line: 148)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -155,10 +155,10 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
         switch yych {
           case 0x30...0x37:
             yystate = 2
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
 #sourceLocation(file: "parse_u32_blocks.re", line: 35)
@@ -182,7 +182,7 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
 #sourceLocation(file: "parse_u32_blocks.swift", line: 183)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -190,10 +190,10 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
         switch yych {
           case 0x30...0x39:
             yystate = 2
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
 #sourceLocation(file: "parse_u32_blocks.re", line: 44)
@@ -217,7 +217,7 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
 #sourceLocation(file: "parse_u32_blocks.swift", line: 218)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -225,16 +225,16 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
         switch yych {
           case 0x30...0x39:
             yystate = 2
-            continue
+            continue yyl
           case 0x41...0x46:
             yystate = 3
-            continue
+            continue yyl
           case 0x61...0x66:
             yystate = 4
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
 #sourceLocation(file: "parse_u32_blocks.re", line: 55)

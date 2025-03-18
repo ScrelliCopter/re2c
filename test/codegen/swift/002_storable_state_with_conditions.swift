@@ -51,7 +51,7 @@ enum YYCondType: Int {
       
 #sourceLocation(file: "002_storable_state_with_conditions.swift", line: 53)
   var yystate: Int = self.state
-  while true {
+  yyl: while true {
     switch yystate {
       case -1...0:
         yych = self.buffer[self.cursor]
@@ -61,15 +61,15 @@ enum YYCondType: Int {
           case 0x20:
             self.cursor += 1
             yystate = 2
-            continue
+            continue yyl
           case 0x30...0x39:
             self.cursor += 1
             yystate = 3
-            continue
+            continue yyl
           case 0x61...0x7A:
             self.cursor += 1
             yystate = 4
-            continue
+            continue yyl
           default:
             if self.limit <= self.cursor {
               self.state = 21
@@ -77,7 +77,7 @@ enum YYCondType: Int {
             }
             self.cursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         self.state = YYCondType.yycINIT.rawValue
@@ -88,17 +88,17 @@ enum YYCondType: Int {
         self.cursor += -1
         self.state = YYCondType.yycSPACES.rawValue
         yystate = YYCondType.yycSPACES.rawValue
-        continue
+        continue yyl
       case 3:
         self.cursor += -1
         self.state = YYCondType.yycNUMBER.rawValue
         yystate = YYCondType.yycNUMBER.rawValue
-        continue
+        continue yyl
       case 4:
         self.cursor += -1
         self.state = YYCondType.yycWORD.rawValue
         yystate = YYCondType.yycWORD.rawValue
-        continue
+        continue yyl
       case 5:
         self.state = YYCondType.yycINIT.rawValue
 #sourceLocation(file: "002_storable_state_with_conditions.re", line: 59)
@@ -112,7 +112,7 @@ enum YYCondType: Int {
           case 0x20:
             self.cursor += 1
             yystate = 8
-            continue
+            continue yyl
           default:
             if self.limit <= self.cursor {
               self.state = 22
@@ -120,7 +120,7 @@ enum YYCondType: Int {
             }
             self.cursor += 1
             yystate = 7
-            continue
+            continue yyl
         }
       case 7:
         self.state = YYCondType.yycSPACES.rawValue
@@ -135,14 +135,14 @@ enum YYCondType: Int {
           case 0x20:
             self.cursor += 1
             yystate = 8
-            continue
+            continue yyl
           default:
             if self.limit <= self.cursor {
               self.state = 23
               return .waiting
             }
             yystate = 9
-            continue
+            continue yyl
         }
       case 9:
         self.state = YYCondType.yycINIT.rawValue
@@ -160,7 +160,7 @@ enum YYCondType: Int {
           case 0x30...0x39:
             self.cursor += 1
             yystate = 13
-            continue
+            continue yyl
           default:
             if self.limit <= self.cursor {
               self.state = 24
@@ -168,7 +168,7 @@ enum YYCondType: Int {
             }
             self.cursor += 1
             yystate = 12
-            continue
+            continue yyl
         }
       case 12:
         self.state = YYCondType.yycNUMBER.rawValue
@@ -181,14 +181,14 @@ enum YYCondType: Int {
           case 0x30...0x39:
             self.cursor += 1
             yystate = 13
-            continue
+            continue yyl
           default:
             if self.limit <= self.cursor {
               self.state = 25
               return .waiting
             }
             yystate = 14
-            continue
+            continue yyl
         }
       case 14:
         self.state = YYCondType.yycSPACES.rawValue
@@ -209,7 +209,7 @@ enum YYCondType: Int {
           case 0x61...0x7A:
             self.cursor += 1
             yystate = 18
-            continue
+            continue yyl
           default:
             if self.limit <= self.cursor {
               self.state = 26
@@ -217,7 +217,7 @@ enum YYCondType: Int {
             }
             self.cursor += 1
             yystate = 17
-            continue
+            continue yyl
         }
       case 17:
         self.state = YYCondType.yycWORD.rawValue
@@ -230,14 +230,14 @@ enum YYCondType: Int {
           case 0x61...0x7A:
             self.cursor += 1
             yystate = 18
-            continue
+            continue yyl
           default:
             if self.limit <= self.cursor {
               self.state = 27
               return .waiting
             }
             yystate = 19
-            continue
+            continue yyl
         }
       case 19:
         self.state = YYCondType.yycSPACES.rawValue
@@ -255,52 +255,52 @@ enum YYCondType: Int {
       case 21:
         if self.limit <= self.cursor {
           yystate = 5
-          continue
+          continue yyl
         }
         yystate = 0
-        continue
+        continue yyl
       case 22:
         if self.limit <= self.cursor {
           yystate = 10
-          continue
+          continue yyl
         }
         yystate = 6
-        continue
+        continue yyl
       case 23:
         if self.limit <= self.cursor {
           yystate = 9
-          continue
+          continue yyl
         }
         yystate = 8
-        continue
+        continue yyl
       case 24:
         if self.limit <= self.cursor {
           yystate = 15
-          continue
+          continue yyl
         }
         yystate = 11
-        continue
+        continue yyl
       case 25:
         if self.limit <= self.cursor {
           yystate = 14
-          continue
+          continue yyl
         }
         yystate = 13
-        continue
+        continue yyl
       case 26:
         if self.limit <= self.cursor {
           yystate = 20
-          continue
+          continue yyl
         }
         yystate = 16
-        continue
+        continue yyl
       case 27:
         if self.limit <= self.cursor {
           yystate = 19
-          continue
+          continue yyl
         }
         yystate = 18
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

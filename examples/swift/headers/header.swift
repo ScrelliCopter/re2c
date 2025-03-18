@@ -11,7 +11,7 @@ extension LexerState {
   
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = str[cur]
@@ -19,16 +19,16 @@ extension LexerState {
           case 0x61:
             cur += 1
             yystate = 0
-            continue
+            continue yyl
           case 0x62:
             self.yyt1 = cur
             cur += 1
             yystate = 2
-            continue
+            continue yyl
           default:
             self.yyt1 = cur
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         t = self.yyt1
@@ -39,10 +39,10 @@ extension LexerState {
           case 0x62:
             cur += 1
             yystate = 2
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       default: fatalError("internal lexer error")
     }

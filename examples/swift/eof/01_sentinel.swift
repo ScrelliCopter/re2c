@@ -11,7 +11,7 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Int? {
 #sourceLocation(file: "01_sentinel.swift", line: 12)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -19,16 +19,16 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Int? {
         switch yych {
           case 0x00:
             yystate = 1
-            continue
+            continue yyl
           case 0x20:
             yystate = 3
-            continue
+            continue yyl
           case 0x61...0x7A:
             yystate = 5
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 1:
 #sourceLocation(file: "01_sentinel.re", line: 16)
@@ -44,10 +44,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Int? {
           case 0x20:
             yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             yystate = 4
-            continue
+            continue yyl
         }
       case 4:
 #sourceLocation(file: "01_sentinel.re", line: 15)
@@ -59,10 +59,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Int? {
           case 0x61...0x7A:
             yycursor += 1
             yystate = 5
-            continue
+            continue yyl
           default:
             yystate = 6
-            continue
+            continue yyl
         }
       case 6:
 #sourceLocation(file: "01_sentinel.re", line: 11)

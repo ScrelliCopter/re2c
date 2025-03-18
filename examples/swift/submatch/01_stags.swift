@@ -34,7 +34,7 @@ var yyt4 = tagNone
 #sourceLocation(file: "01_stags.swift", line: 35)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -43,15 +43,15 @@ var yyt4 = tagNone
             yyt1 = yycursor
             yycursor += 1
             yystate = 3
-            continue
+            continue yyl
           default:
             yycursor += 1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
 #sourceLocation(file: "01_stags.re", line: 34)
         return nil
@@ -63,14 +63,14 @@ var yyt4 = tagNone
           case 0x2E:
             yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x30...0x39:
             yycursor += 1
             yystate = 6
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         yych = yyinput[yycursor]
@@ -79,29 +79,29 @@ var yyt4 = tagNone
             yyt2 = yycursor
             yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 5:
         yycursor = yymarker
         yystate = 2
-        continue
+        continue yyl
       case 6:
         yych = yyinput[yycursor]
         switch yych {
           case 0x2E:
             yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           case 0x30...0x39:
             yycursor += 1
             yystate = 6
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 7:
         yych = yyinput[yycursor]
@@ -111,19 +111,19 @@ var yyt4 = tagNone
             yyt4 = -1
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           case 0x2E:
             yyt3 = yycursor
             yycursor += 1
             yystate = 9
-            continue
+            continue yyl
           case 0x30...0x39:
             yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 8:
         t1 = yyt1
@@ -153,10 +153,10 @@ var yyt4 = tagNone
             yyt4 = yycursor
             yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 10:
         yych = yyinput[yycursor]
@@ -164,14 +164,14 @@ var yyt4 = tagNone
           case 0x00:
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           case 0x30...0x39:
             yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       default: fatalError("internal lexer error")
     }

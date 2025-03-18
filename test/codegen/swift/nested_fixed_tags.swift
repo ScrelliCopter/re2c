@@ -19,7 +19,7 @@ func lexTagsGeneric(_ str: UnsafeBufferPointer<UInt8>) -> Int {
   
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         marker = cursor
@@ -28,11 +28,11 @@ func lexTagsGeneric(_ str: UnsafeBufferPointer<UInt8>) -> Int {
           case 0x62:
             cursor += 1
             yystate = 2
-            continue
+            continue yyl
           default:
             yyt1 = -1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         y = yyt1
@@ -48,20 +48,20 @@ func lexTagsGeneric(_ str: UnsafeBufferPointer<UInt8>) -> Int {
           case 0x61:
             cursor += 1
             yystate = 4
-            continue
+            continue yyl
           default:
             yystate = 3
-            continue
+            continue yyl
         }
       case 3:
         cursor = marker
         yyt1 = -1
         yystate = 1
-        continue
+        continue yyl
       case 4:
         yyt1 = cursor
         yystate = 1
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }
@@ -77,7 +77,7 @@ func lexTagsSimple(_ str: UnsafeBufferPointer<UInt8>) -> Int {
   
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yymarker = yycursor
@@ -86,11 +86,11 @@ func lexTagsSimple(_ str: UnsafeBufferPointer<UInt8>) -> Int {
           case 0x62:
             yycursor += 1
             yystate = 2
-            continue
+            continue yyl
           default:
             yyt1 = -1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         y = yyt1
@@ -105,20 +105,20 @@ func lexTagsSimple(_ str: UnsafeBufferPointer<UInt8>) -> Int {
           case 0x61:
             yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           default:
             yystate = 3
-            continue
+            continue yyl
         }
       case 3:
         yycursor = yymarker
         yyt1 = -1
         yystate = 1
-        continue
+        continue yyl
       case 4:
         yyt1 = yycursor
         yystate = 1
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }
@@ -136,7 +136,7 @@ func lexCapturesGeneric(_ str: UnsafeBufferPointer<UInt8>) -> Int {
   
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = str[cursor]
@@ -145,12 +145,12 @@ func lexCapturesGeneric(_ str: UnsafeBufferPointer<UInt8>) -> Int {
             yyt1 = cursor
             cursor += 1
             yystate = 2
-            continue
+            continue yyl
           default:
             yyt1 = cursor
             yyt2 = -1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yynmatch = 3
@@ -171,7 +171,7 @@ func lexCapturesGeneric(_ str: UnsafeBufferPointer<UInt8>) -> Int {
       case 2:
         yyt2 = cursor
         yystate = 1
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }
@@ -189,7 +189,7 @@ func lexCapturesSimple(_ str: UnsafeBufferPointer<UInt8>) -> Int {
   
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = str[yycursor]
@@ -198,12 +198,12 @@ func lexCapturesSimple(_ str: UnsafeBufferPointer<UInt8>) -> Int {
             yyt1 = yycursor
             yycursor += 1
             yystate = 2
-            continue
+            continue yyl
           default:
             yyt1 = yycursor
             yyt2 = -1
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yynmatch = 3
@@ -223,7 +223,7 @@ func lexCapturesSimple(_ str: UnsafeBufferPointer<UInt8>) -> Int {
       case 2:
         yyt2 = yycursor
         yystate = 1
-        continue
+        continue yyl
       default: fatalError("internal lexer error")
     }
   }

@@ -14,7 +14,7 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
 #sourceLocation(file: "reuse.swift", line: 15)
   var yych: UInt8 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
@@ -22,14 +22,14 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
         switch yych {
           case 0xE2:
             yystate = 3
-            continue
+            continue yyl
           default:
             yystate = 1
-            continue
+            continue yyl
         }
       case 1:
         yystate = 2
-        continue
+        continue yyl
       case 2:
 #sourceLocation(file: "reuse.re", line: 10)
         return false
@@ -41,10 +41,10 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
           case 0x88:
             yycursor += 1
             yystate = 4
-            continue
+            continue yyl
           default:
             yystate = 2
-            continue
+            continue yyl
         }
       case 4:
         yych = yyinput[yycursor]
@@ -52,25 +52,25 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
           case 0x80:
             yycursor += 1
             yystate = 6
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 5:
         yycursor = yymarker
         yystate = 2
-        continue
+        continue yyl
       case 6:
         yych = yyinput[yycursor]
         switch yych {
           case 0x78:
             yycursor += 1
             yystate = 7
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 7:
         yych = yyinput[yycursor]
@@ -78,10 +78,10 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
           case 0x20:
             yycursor += 1
             yystate = 8
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 8:
         yych = yyinput[yycursor]
@@ -89,10 +89,10 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
           case 0xE2:
             yycursor += 1
             yystate = 9
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 9:
         yych = yyinput[yycursor]
@@ -100,10 +100,10 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
           case 0x88:
             yycursor += 1
             yystate = 10
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 10:
         yych = yyinput[yycursor]
@@ -111,10 +111,10 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
           case 0x83:
             yycursor += 1
             yystate = 11
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 11:
         yych = yyinput[yycursor]
@@ -122,10 +122,10 @@ func lexUTF8(_ yyinput: [UInt8]) -> Bool {
           case 0x79:
             yycursor += 1
             yystate = 12
-            continue
+            continue yyl
           default:
             yystate = 5
-            continue
+            continue yyl
         }
       case 12:
 #sourceLocation(file: "reuse.re", line: 9)
@@ -144,17 +144,17 @@ func lexUTF32(_ yyinput: [UInt32]) -> Bool {
 #sourceLocation(file: "reuse.swift", line: 145)
   var yych: UInt32 = 0
   var yystate: UInt = 0
-  while true {
+  yyl: while true {
     switch yystate {
       case 0:
         yych = yyinput[yycursor]
         yycursor += 1
         if yych == 0x00002200 {
           yystate = 2
-          continue
+          continue yyl
         }
         yystate = 1
-        continue
+        continue yyl
       case 1:
 #sourceLocation(file: "reuse.re", line: 10)
         return false
@@ -164,32 +164,32 @@ func lexUTF32(_ yyinput: [UInt32]) -> Bool {
         yych = yyinput[yycursor]
         if yych != 0x00000078 {
           yystate = 1
-          continue
+          continue yyl
         }
         yycursor += 1
         yych = yyinput[yycursor]
         if yych == 0x00000020 {
           yycursor += 1
           yystate = 4
-          continue
+          continue yyl
         }
         yystate = 3
-        continue
+        continue yyl
       case 3:
         yycursor = yymarker
         yystate = 1
-        continue
+        continue yyl
       case 4:
         yych = yyinput[yycursor]
         if yych != 0x00002203 {
           yystate = 3
-          continue
+          continue yyl
         }
         yycursor += 1
         yych = yyinput[yycursor]
         if yych != 0x00000079 {
           yystate = 3
-          continue
+          continue yyl
         }
         yycursor += 1
 #sourceLocation(file: "reuse.re", line: 9)
