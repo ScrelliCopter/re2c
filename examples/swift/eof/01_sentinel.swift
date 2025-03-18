@@ -79,9 +79,10 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Int? {
   }
 }
 
-let test = { (str: StaticString, expect: Int?) in
+func test(_ str: StaticString, _ expect: Int?) {
   assert(lex(str.utf8Start) == expect)
 }
+
 test("", 0)
 test("one two three", 3)
 test("f0ur", nil)

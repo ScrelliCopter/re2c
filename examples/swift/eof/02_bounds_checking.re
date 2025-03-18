@@ -32,11 +32,12 @@ func lex(_ str: UnsafeBufferPointer<UInt8>) -> Int? {
   }
 }
 
-let test = { (str: StaticString, expect: Int?) in
+func test(_ str: StaticString, _ expect: Int?) {
   str.withUTF8Buffer {
     assert(lex($0) == expect)
   }
 }
+
 test("", 0)
 test("'qu\0tes' 'are' 'fine: \\'' ", 3)
 test("'unterminated\\'", nil)
