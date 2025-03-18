@@ -15,6 +15,7 @@ backtick_quoted_strings = 0;
 single_quoted_strings = 0;
 indentation_sensitive = 0;
 wrap_blocks_in_braces = 0;
+special_escapes = "\a\b\t\n\v\f\r\"\\";
 
 
 // immutable configurations (command-line only options) ------------------------
@@ -35,6 +36,15 @@ re2c:line-dirs = 1;
 
 re2c:api = generic;
 re2c:api:style = free-form;
+re2c:api:sigil = "@@";
+re2c:YYGETCOND:naked = 0;
+re2c:YYSETCOND:naked = 0;
+re2c:YYSETCOND@cond = "@@";
+re2c:YYGETSTATE:naked = 0;
+re2c:YYSETSTATE:naked = 0;
+re2c:YYSETSTATE@state = "@@";
+re2c:YYFILL@len = "@@";
+re2c:YYFILL:naked = 0;
 re2c:YYFN = ["<undefined-function-name>;<undefined-function-type>"];
 re2c:yyfn:sep = ";";
 re2c:yycond = "yycond";
@@ -47,7 +57,7 @@ re2c:yypmatch = "yypmatch";
 re2c:yyrecord = "yyrecord";
 re2c:yych = "yych";
 re2c:yych:conversion = 0;
-re2c:yych:literals = hex; // Seems impossible to double-quote char literals and wrap them in UInt8(asci: ), UnicodeScalars are also out of the question
+re2c:yych:literals = hex;
 re2c:yych:emit = (.code_model.recursive_functions ? 0 : 1);
 re2c:yybm = "yybm";
 re2c:yybm:hex = 0;
@@ -60,10 +70,44 @@ re2c:yyfill:enable = 1;
 re2c:yyfill:parameter = 1;
 re2c:yyfill:check = 1;
 re2c:tags = 0;
+re2c:tags:prefix = "yyt";
+re2c:captures = 0;
+re2c:captvars = 0;
+re2c:posix-captures = 0;
+re2c:posix-captvars = 0;
+re2c:invert-captures = 0;
 re2c:cond:abort = 1;
+re2c:cond:prefix = "yyc_";
+re2c:cond:enumprefix = "yyc";
+re2c:cond:divider@cond = "@@";
+re2c:cond:goto@cond = "@@";
+re2c:state:abort = 1;
+re2c:state:nextlabel = 0;
+re2c:bit-vectors = 0;
+re2c:debug-output = 0;
+re2c:computed-gotos = 0;
+re2c:computed-gotos:threshold = 9;
+re2c:computed-gotos:relative = 0;
 re2c:nested-ifs = 0;
+re2c:case-insensitive = 0;
+re2c:case-inverted = 0;
 re2c:case-ranges = 1;
+re2c:unsafe = 0;
+re2c:monadic = 0;
+re2c:encoding:ebcdic = 0;
+re2c:encoding:utf32 = 0;
+re2c:encoding:ucs2 = 0;
+re2c:encoding:utf16 = 0;
+re2c:encoding:utf8 = 0;
+re2c:encoding-policy = ignore;
+re2c:empty-class = match-empty;
 re2c:indent:string = "  ";
+re2c:indent:top = 0;
+re2c:label:prefix = "yy";
+re2c:label:yyfill = "";
+re2c:label:yyloop = "";
+re2c:label:yyNext = "";
+re2c:label:start = 0;
 
 
 // mutable code configuration --------------------------------------------------
@@ -105,7 +149,6 @@ re2c:tags:expression = (.api.record ? yyrecord ".") sigil;
 re2c:tags:negative = (.api.generic ? "@@" : "-1");
 re2c:cond:divider = "/* *********************************** */";
 re2c:cond:goto = "";
-re2c:state:abort = 1;
 
 
 // code templates --------------------------------------------------------------
@@ -177,7 +220,7 @@ code:switch_case_range = "case " [val{0}: val] (.many ? "..." [val{-1}: val]) ":
 code:switch_case_default = "default:";
 
 code:loop =
-    topindent (.loop_label ? label ": " nl) "while true {" nl
+    topindent (.loop_label ? label ": ") "while true {" nl
         indent [stmt: stmt] dedent
     topindent "}" nl;
 
