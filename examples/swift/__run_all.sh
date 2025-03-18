@@ -47,8 +47,8 @@ for f in $(find . -name '*.re'); do
 
     # Clean up build artifacts.
     if [ -n "$mod" ]; then
-        for ext in a so; do rm -f "$mod_dir/lib$mod.$ext"; done
-        for ext in abi.json swiftdoc swiftmodule swiftsourceinfo; do rm -f "$mod_dir/$mod.$ext"; done
+        rm -f "$mod_dir/lib$mod.a"
+        for ext in o abi.json swiftdoc swiftmodule swiftsourceinfo; do rm -f "$mod_dir/$mod.$ext"; done
     fi
     rm -f "$swifttest" example
     [ -d "example.dSYM" ] && rm -r example.dSYM
