@@ -74,6 +74,9 @@ The configure script has many options (to see them all, run
   * `--enable-rust`
     Build re2rust (identical to `re2c --lang rust`). This is on by default.
 
+  * `--enable-swift`
+    Build re2swift (identical to `re2c --lang swift`). This is on by default.
+
   * `--enable-vlang`
     Build re2v (identical to `re2c --lang v`). This is on by default.
 

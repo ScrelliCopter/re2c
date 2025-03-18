@@ -363,6 +363,8 @@ def run_test(test):
             ext = "py"
         elif head.startswith("// re2rust"):
             ext = "rs"
+        elif head.startswith("// re2swift"):
+            ext = "swift"
         elif head.startswith("// re2v"):
             ext = "v"
         elif head.startswith("// re2zig"):
@@ -383,6 +385,7 @@ def run_test(test):
     switches = switches.replace('re2ocaml', 're2c --lang ocaml')
     switches = switches.replace('re2py', 're2c --lang python')
     switches = switches.replace('re2rust', 're2c --lang rust')
+    switches = switches.replace('re2swift, 're2c --lang swift')
     switches = switches.replace('re2v', 're2c --lang v')
     switches = switches.replace('re2zig', 're2c --lang zig')
     switches = RE2C_PATTERN.sub(r'\1', switches)
