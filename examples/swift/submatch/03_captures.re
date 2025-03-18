@@ -36,10 +36,6 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> SemVer? {
   }
 }
 
-@main struct Program {
-  static func main() {
-    assert(lex("23.34") == SemVer(major: 23, minor: 34, patch: 0))
-    assert(lex("1.2.999") == SemVer(major: 1, minor: 2, patch: 999))
-    assert(lex("1.a") == nil)
-  }
-}
+assert(lex("23.34") == SemVer(major: 23, minor: 34, patch: 0))
+assert(lex("1.2.999") == SemVer(major: 1, minor: 2, patch: 999))
+assert(lex("1.a") == nil)

@@ -222,10 +222,6 @@ class MTag {
   }
 }
 
-@main struct Program {
-  static func main() {
-    assert(parse("1") == Ver(components: [1]))
-    assert(parse("1.2.3.4.5.6.7") == Ver(components: [1, 2, 3, 4, 5, 6, 7]))
-    assert(parse("1.2.") == nil)
-  }
-}
+assert(parse("1") == Ver(components: [1]))
+assert(parse("1.2.3.4.5.6.7") == Ver(components: [1, 2, 3, 4, 5, 6, 7]))
+assert(parse("1.2.") == nil)

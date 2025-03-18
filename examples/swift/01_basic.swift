@@ -38,9 +38,5 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Bool {
 
 }
 
-@main struct Program {
-  static func main() {
-    let string: StaticString = "1234"
-    assert(lex(string.utf8Start))
-  }
-}
+let string: StaticString = "1234"
+assert(lex(string.utf8Start))

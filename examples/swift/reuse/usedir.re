@@ -29,9 +29,5 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> What {
 
 enum What { case color, fish, dunno }
 
-@main struct Program {
-  static func main() {
-    assert(lex("salmon") == .fish)
-    assert(lex("what?") == .dunno)
-  }
-}
+assert(lex("salmon") == .fish)
+assert(lex("what?") == .dunno)

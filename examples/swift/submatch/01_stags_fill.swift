@@ -299,37 +299,33 @@ extension SemVer: CustomStringConvertible {
   var description: String { "\(self.major).\(self.minor).\(self.patch)" }
 }
 
-@main struct Program {
-  static func main() throws {
-    let fileName = "input"
-    let semVer = SemVer(major: 1, minor: 22, patch: 333)
-    let expect = [SemVer](repeating: semVer, count: Input.bufferSize)
+let fileName = "input"
+let semVer = SemVer(major: 1, minor: 22, patch: 333)
+let expect = [SemVer](repeating: semVer, count: Input.bufferSize)
 
-    // Prepare input file (make sure it exceeds buffer size).
-    guard FileManager.default.createFile(
-        atPath: fileName,
-        contents: Data(String(repeating: "\(semVer)\n", count: Input.bufferSize).utf8)
-    ) else {
-      fatalError("failed to write file \"\(fileName)\"")
-    }
-
-    // Reopen input file for reading.
-    guard let file = FileHandle(forReadingAtPath: fileName) else {
-      throw NSError(domain: NSCocoaErrorDomain, code: CocoaError.fileReadNoSuchFile.rawValue)
-    }
-
-    // Initialize lexer state. Buffer is set to zero, triggering YYFILL.
-    var `in` = Input(file: file)
-
-    // Run the lexer and check the results.
-    guard let actual = `in`.lex() else {
-      fatalError("parser error")
-    }
-
-    assert(actual == expect)
-
-    // Cleanup: remove input file.
-    try file.close()
-    try FileManager.default.removeItem(atPath: fileName)
-  }
+// Prepare input file (make sure it exceeds buffer size).
+guard FileManager.default.createFile(
+    atPath: fileName,
+    contents: Data(String(repeating: "\(semVer)\n", count: Input.bufferSize).utf8)
+) else {
+  fatalError("failed to write file \"\(fileName)\"")
 }
+
+// Reopen input file for reading.
+guard let file = FileHandle(forReadingAtPath: fileName) else {
+  throw NSError(domain: NSCocoaErrorDomain, code: CocoaError.fileReadNoSuchFile.rawValue)
+}
+
+// Initialize lexer state. Buffer is set to zero, triggering YYFILL.
+var `in` = Input(file: file)
+
+// Run the lexer and check the results.
+guard let actual = `in`.lex() else {
+  fatalError("parser error")
+}
+
+assert(actual == expect)
+
+// Cleanup: remove input file.
+try file.close()
+try FileManager.default.removeItem(atPath: fileName)

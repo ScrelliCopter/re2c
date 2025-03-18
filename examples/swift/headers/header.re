@@ -32,10 +32,6 @@ extension LexerState {
   }
 }
 
-@main struct Program {
-  static func main() {
-    let str: StaticString = "ab"
-    var state = LexerState(str: str.utf8Start, cur: 0)
-    assert(state.lex() == 1)
-  }
-}
+let str: StaticString = "ab"
+var state = LexerState(str: str.utf8Start, cur: 0)
+assert(state.lex() == 1)

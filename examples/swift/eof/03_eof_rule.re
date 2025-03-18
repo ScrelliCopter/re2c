@@ -23,13 +23,9 @@ func lex(_ yyinput: UnsafePointer<UInt8>, _ length: Int) -> Int? {
   }
 }
 
-@main struct Program {
-  static func main() {
-    let test = { (str: StaticString, expect: Int?) in
-      assert(lex(str.utf8Start, str.utf8CodeUnitCount) == expect)
-    }
-    test("", 0);
-    test("'qu\0tes' 'are' 'fine: \\'' ", 3);
-    test("'unterminated\\'", nil);
-  }
+let test = { (str: StaticString, expect: Int?) in
+  assert(lex(str.utf8Start, str.utf8CodeUnitCount) == expect)
 }
+test("", 0);
+test("'qu\0tes' 'are' 'fine: \\'' ", 3);
+test("'unterminated\\'", nil);

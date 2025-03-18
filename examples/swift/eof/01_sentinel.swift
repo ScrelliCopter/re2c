@@ -79,13 +79,9 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Int? {
   }
 }
 
-@main struct Program {
-  static func main() {
-    let test = { (str: StaticString, expect: Int?) in
-      assert(lex(str.utf8Start) == expect)
-    }
-    test("", 0)
-    test("one two three", 3)
-    test("f0ur", nil)
-  }
+let test = { (str: StaticString, expect: Int?) in
+  assert(lex(str.utf8Start) == expect)
 }
+test("", 0)
+test("one two three", 3)
+test("f0ur", nil)

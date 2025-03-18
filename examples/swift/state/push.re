@@ -155,12 +155,8 @@ func test(_ packets: [StaticString]) -> State.Status {
   }
 }
 
-@main struct Program {
-  static func main() {
-    assert(test([]) == .end)
-    assert(test([ "zero;", "one;", "two;", "three;", "four;" ]) == .end)
-    assert(test([ "zer0;" ]) == .badPacket)
-    assert(test([ "looooooooooong;" ]) == .bigPacket)
-    log("all tests completed successfully")
-  }
-}
+assert(test([]) == .end)
+assert(test([ "zero;", "one;", "two;", "three;", "four;" ]) == .end)
+assert(test([ "zer0;" ]) == .badPacket)
+assert(test([ "looooooooooong;" ]) == .bigPacket)
+log("all tests completed successfully")

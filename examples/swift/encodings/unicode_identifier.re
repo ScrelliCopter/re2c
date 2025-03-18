@@ -18,10 +18,6 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Bool {
   */
 }
 
-@main struct Program {
-  static func main() {
-    assert(lex("_Ыдентификатор"))
-    assert(lex("識別子"))
-    assert(!lex("+"))
-  }
-}
+assert(lex("_Ыдентификатор"))
+assert(lex("識別子"))
+assert(!lex("+"))

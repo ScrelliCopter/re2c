@@ -13,9 +13,5 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> Result {
   */
 }
 
-@main struct Program {
-  static func main() {
-    assert(lex("123") == .ok)
-    assert(lex("123.4567") == .ok)
-  }
-}
+assert(lex("123") == .ok)
+assert(lex("123.4567") == .ok)

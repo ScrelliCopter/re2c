@@ -8,7 +8,7 @@ func lex(_ yyinput: UnsafePointer<UInt8>) -> SemVer? {
   let tagNone = -1
 
   var yycursor = 0, yymarker = 0
-  
+
   // Final tag variables available in semantic action.
   
 #sourceLocation(file: "01_stags.swift", line: 15)
@@ -180,10 +180,6 @@ var yyt4 = tagNone
 
 }
 
-@main struct Program {
-  static func main() {
-    assert(lex("23.34") == SemVer(major: 23, minor: 34, patch: 0))
-    assert(lex("1.2.999") == SemVer(major: 1, minor: 2, patch: 999))
-    assert(lex("1.a") == nil)
-  }
-}
+assert(lex("23.34") == SemVer(major: 23, minor: 34, patch: 0))
+assert(lex("1.2.999") == SemVer(major: 1, minor: 2, patch: 999))
+assert(lex("1.a") == nil)

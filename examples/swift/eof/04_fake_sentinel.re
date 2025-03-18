@@ -24,14 +24,10 @@ func lex(_ str: Data) -> Int? {
   }
 }
 
-@main struct Program {
-  static func main() {
-    let test = { (str: String, expect: Int?) in
-      // For the sake of example create a string without terminating null.
-      assert(lex(Data(str.utf8)) == expect)
-    }
-    test("", 0)
-    test("one two three ", 3)
-    test("f0ur", nil)
-  }
+let test = { (str: String, expect: Int?) in
+  // For the sake of example create a string without terminating null.
+  assert(lex(Data(str.utf8)) == expect)
 }
+test("", 0)
+test("one two three ", 3)
+test("f0ur", nil)

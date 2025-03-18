@@ -171,35 +171,31 @@ extension Input {
   }
 }
 
-@main struct Program {
-  static func main() throws {
-    let fileName = "input"
-    let content = "'qu\0tes' 'are' 'fine: \\'' ";
+let fileName = "input"
+let content = "'qu\0tes' 'are' 'fine: \\'' ";
 
-    // Prepare input file: a few times the size of the buffer,
-    // containing strings with zeroes and escaped quotes.
-    guard FileManager.default.createFile(
-        atPath: fileName,
-        contents: Data(String(repeating: content, count: Input.bufferSize).utf8)
-    ) else {
-      fatalError("failed to write file \"\(fileName)\"")
-    }
-
-    // Number of quoted strings written to file
-    let count = 3 * Input.bufferSize
-
-    // Initialize lexer state
-    // This immediately triggers YYFILL, as the check `in.yycursor < in.yylimit` fails.
-    guard let file = FileHandle(forReadingAtPath: fileName) else {
-      throw NSError(domain: NSCocoaErrorDomain, code: CocoaError.fileReadNoSuchFile.rawValue)
-    }
-    var `in` = Input(file: file)
-
-    // Run the lexer
-    assert(`in`.lex() == count)
-
-    // Cleanup: remove input file
-    try file.close()
-    try FileManager.default.removeItem(atPath: fileName)
-  }
+// Prepare input file: a few times the size of the buffer,
+// containing strings with zeroes and escaped quotes.
+guard FileManager.default.createFile(
+    atPath: fileName,
+    contents: Data(String(repeating: content, count: Input.bufferSize).utf8)
+) else {
+  fatalError("failed to write file \"\(fileName)\"")
 }
+
+// Number of quoted strings written to file
+let count = 3 * Input.bufferSize
+
+// Initialize lexer state
+// This immediately triggers YYFILL, as the check `in.yycursor < in.yylimit` fails.
+guard let file = FileHandle(forReadingAtPath: fileName) else {
+  throw NSError(domain: NSCocoaErrorDomain, code: CocoaError.fileReadNoSuchFile.rawValue)
+}
+var `in` = Input(file: file)
+
+// Run the lexer
+assert(`in`.lex() == count)
+
+// Cleanup: remove input file
+try file.close()
+try FileManager.default.removeItem(atPath: fileName)

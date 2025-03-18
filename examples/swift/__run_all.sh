@@ -25,7 +25,7 @@ for f in $(find . -name '*.re'); do
         head -n $l "$swifttest" > "$swifttest".mod && mv "$swifttest".mod "$swifttest"
     fi
 
-    extra_args="-g -parse-as-library"
+    extra_args="-g"
     echo "${f#'./'}"
 
     # Header test needs to build an extra module

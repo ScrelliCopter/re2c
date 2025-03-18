@@ -58,13 +58,9 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
   }
 }
 
-@main struct Program {
-  static func main() {
-    assert(parseUInt32("") == nil)
-    assert(parseUInt32("1234567890") == 1234567890)
-    assert(parseUInt32("0b1101") == 13)
-    assert(parseUInt32("0x7Fe") == 2046)
-    assert(parseUInt32("0644") == 420)
-    assert(parseUInt32("9999999999") == nil)
-  }
-}
+assert(parseUInt32("") == nil)
+assert(parseUInt32("1234567890") == 1234567890)
+assert(parseUInt32("0b1101") == 13)
+assert(parseUInt32("0x7Fe") == 2046)
+assert(parseUInt32("0644") == 420)
+assert(parseUInt32("9999999999") == nil)
