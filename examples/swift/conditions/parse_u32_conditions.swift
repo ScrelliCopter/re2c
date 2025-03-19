@@ -3,24 +3,22 @@
 // re2swift $INPUT -o $OUTPUT --api simple -c
 
 #sourceLocation(file: "parse_u32_conditions.swift", line: 6)
-enum YYCondType: UInt {
-  case yycinit = 0
-  case yycbin = 10
-  case yycoct = 14
-  case yycdec = 18
-  case yychex = 22
-}
+let yycinit: UInt = 0
+let yycbin: UInt = 10
+let yycoct: UInt = 14
+let yycdec: UInt = 18
+let yychex: UInt = 22
 #sourceLocation(file: "parse_u32_conditions.re", line: 3)
 
 
 func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
-  var yycursor = 0, yymarker = 0, yycond = YYCondType.yycinit.rawValue
+  var yycursor = 0, yymarker = 0, yycond = yycinit
 
   var accum: UInt64 = 0
 
   loop: while true {
     
-#sourceLocation(file: "parse_u32_conditions.swift", line: 24)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 22)
   var yych: UInt8 = 0
   var yystate: UInt = yycond
   yyl: while true {
@@ -42,7 +40,7 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
       case 1:
 #sourceLocation(file: "parse_u32_conditions.re", line: 28)
         return nil
-#sourceLocation(file: "parse_u32_conditions.swift", line: 46)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 44)
       case 2:
         yymarker = yycursor
         yych = yyinput[yycursor]
@@ -64,13 +62,13 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
             continue yyl
         }
       case 3:
-        yycond = YYCondType.yycoct.rawValue
-        yystate = YYCondType.yycoct.rawValue
+        yycond = yycoct
+        yystate = yycoct
         continue yyl
       case 4:
         yycursor -= 1
-        yycond = YYCondType.yycdec.rawValue
-        yystate = YYCondType.yycdec.rawValue
+        yycond = yycdec
+        yystate = yycdec
         continue yyl
       case 5:
         yych = yyinput[yycursor]
@@ -104,13 +102,13 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
         }
       case 8:
         yycursor -= 1
-        yycond = YYCondType.yycbin.rawValue
-        yystate = YYCondType.yycbin.rawValue
+        yycond = yycbin
+        yystate = yycbin
         continue yyl
       case 9:
         yycursor -= 1
-        yycond = YYCondType.yychex.rawValue
-        yystate = YYCondType.yychex.rawValue
+        yycond = yychex
+        yystate = yychex
         continue yyl
       case 10:
         yych = yyinput[yycursor]
@@ -129,15 +127,15 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
       case 11:
 #sourceLocation(file: "parse_u32_conditions.re", line: 26)
         return UInt32(exactly: accum)
-#sourceLocation(file: "parse_u32_conditions.swift", line: 133)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 131)
       case 12:
 #sourceLocation(file: "parse_u32_conditions.re", line: 28)
         return nil
-#sourceLocation(file: "parse_u32_conditions.swift", line: 137)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 135)
       case 13:
 #sourceLocation(file: "parse_u32_conditions.re", line: 19)
         add("0", 2);      continue loop
-#sourceLocation(file: "parse_u32_conditions.swift", line: 141)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 139)
       case 14:
         yych = yyinput[yycursor]
         yycursor += 1
@@ -155,15 +153,15 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
       case 15:
 #sourceLocation(file: "parse_u32_conditions.re", line: 26)
         return UInt32(exactly: accum)
-#sourceLocation(file: "parse_u32_conditions.swift", line: 159)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 157)
       case 16:
 #sourceLocation(file: "parse_u32_conditions.re", line: 28)
         return nil
-#sourceLocation(file: "parse_u32_conditions.swift", line: 163)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 161)
       case 17:
 #sourceLocation(file: "parse_u32_conditions.re", line: 20)
         add("0", 8);      continue loop
-#sourceLocation(file: "parse_u32_conditions.swift", line: 167)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 165)
       case 18:
         yych = yyinput[yycursor]
         yycursor += 1
@@ -181,15 +179,15 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
       case 19:
 #sourceLocation(file: "parse_u32_conditions.re", line: 26)
         return UInt32(exactly: accum)
-#sourceLocation(file: "parse_u32_conditions.swift", line: 185)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 183)
       case 20:
 #sourceLocation(file: "parse_u32_conditions.re", line: 28)
         return nil
-#sourceLocation(file: "parse_u32_conditions.swift", line: 189)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 187)
       case 21:
 #sourceLocation(file: "parse_u32_conditions.re", line: 21)
         add("0", 10);     continue loop
-#sourceLocation(file: "parse_u32_conditions.swift", line: 193)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 191)
       case 22:
         yych = yyinput[yycursor]
         yycursor += 1
@@ -213,23 +211,23 @@ func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
       case 23:
 #sourceLocation(file: "parse_u32_conditions.re", line: 26)
         return UInt32(exactly: accum)
-#sourceLocation(file: "parse_u32_conditions.swift", line: 217)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 215)
       case 24:
 #sourceLocation(file: "parse_u32_conditions.re", line: 28)
         return nil
-#sourceLocation(file: "parse_u32_conditions.swift", line: 221)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 219)
       case 25:
 #sourceLocation(file: "parse_u32_conditions.re", line: 22)
         add("0", 16);     continue loop
-#sourceLocation(file: "parse_u32_conditions.swift", line: 225)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 223)
       case 26:
 #sourceLocation(file: "parse_u32_conditions.re", line: 24)
         add("A", 16, 10); continue loop
-#sourceLocation(file: "parse_u32_conditions.swift", line: 229)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 227)
       case 27:
 #sourceLocation(file: "parse_u32_conditions.re", line: 23)
         add("a", 16, 10); continue loop
-#sourceLocation(file: "parse_u32_conditions.swift", line: 233)
+#sourceLocation(file: "parse_u32_conditions.swift", line: 231)
       default: fatalError("internal lexer error")
     }
   }

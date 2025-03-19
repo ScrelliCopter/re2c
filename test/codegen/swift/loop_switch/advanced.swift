@@ -56,23 +56,21 @@ struct State {
 }
 
 extension State {
-  
-#sourceLocation(file: "advanced.swift", line: 61)
-enum YYCondType: Int {
-  case yycmedia_type = 0
-  case yycheader = 22
-}
-#sourceLocation(file: "advanced.re", line: 39)
-
-
   mutating func parse() -> Status {
+    
+#sourceLocation(file: "advanced.swift", line: 62)
+let yycmedia_type: Int = 0
+let yycheader: Int = 22
+#sourceLocation(file: "advanced.re", line: 40)
+
+
     var yych: UInt8 = 0
     var l1: Int, l2: Int
     var f1: MTag? = nil, f2: MTag? = nil
     var p1: MTag? = nil, p2: MTag? = nil, p3: MTag? = nil, p4: MTag? = nil
 
     
-#sourceLocation(file: "advanced.swift", line: 76)
+#sourceLocation(file: "advanced.swift", line: 74)
   var yystate: Int = self.yystate
   yyl: while true {
     switch yystate {
@@ -113,10 +111,10 @@ enum YYCondType: Int {
         yystate = 2
         continue yyl
       case 2:
-        self.yystate = YYCondType.yycmedia_type.rawValue
+        self.yystate = yycmedia_type
 #sourceLocation(file: "advanced.re", line: 115)
         return .error
-#sourceLocation(file: "advanced.swift", line: 120)
+#sourceLocation(file: "advanced.swift", line: 118)
       case 3:
         self.yymarker = self.yycursor
         yych = self.buffer[self.yycursor]
@@ -362,7 +360,7 @@ enum YYCondType: Int {
         p2 = self.yytm4
         p3 = self.yytm5
         p4 = self.yytm6
-        self.yystate = YYCondType.yycmedia_type.rawValue
+        self.yystate = yycmedia_type
 #sourceLocation(file: "advanced.re", line: 86)
         
         print("media type: \(getString(l1..<l2))")
@@ -380,7 +378,7 @@ enum YYCondType: Int {
 
         return .done
 
-#sourceLocation(file: "advanced.swift", line: 384)
+#sourceLocation(file: "advanced.swift", line: 382)
       case 14:
         yych = self.buffer[self.yycursor]
         switch yych {
@@ -618,10 +616,10 @@ enum YYCondType: Int {
             continue yyl
         }
       case 21:
-        self.yystate = YYCondType.yycmedia_type.rawValue
+        self.yystate = yycmedia_type
 #sourceLocation(file: "advanced.re", line: 114)
         return .end
-#sourceLocation(file: "advanced.swift", line: 625)
+#sourceLocation(file: "advanced.swift", line: 623)
       case 22:
         yych = self.buffer[self.yycursor]
         switch yych {
@@ -653,10 +651,10 @@ enum YYCondType: Int {
         yystate = 24
         continue yyl
       case 24:
-        self.yystate = YYCondType.yycheader.rawValue
+        self.yystate = yycheader
 #sourceLocation(file: "advanced.re", line: 115)
         return .error
-#sourceLocation(file: "advanced.swift", line: 660)
+#sourceLocation(file: "advanced.swift", line: 658)
       case 25:
         self.yyaccept = 0
         self.yymarker = self.yycursor
@@ -944,7 +942,7 @@ enum YYCondType: Int {
       case 37:
         f1 = self.yytm1
         f2 = self.yytm3
-        self.yystate = YYCondType.yycheader.rawValue
+        self.yystate = yycheader
 #sourceLocation(file: "advanced.re", line: 103)
         
         var foldStart = f1, foldEnd = f2
@@ -956,7 +954,7 @@ enum YYCondType: Int {
 
         return .done
 
-#sourceLocation(file: "advanced.swift", line: 960)
+#sourceLocation(file: "advanced.swift", line: 958)
       case 38:
         yych = self.buffer[self.yycursor]
         switch yych {
@@ -1065,10 +1063,10 @@ enum YYCondType: Int {
             continue yyl
         }
       case 43:
-        self.yystate = YYCondType.yycheader.rawValue
+        self.yystate = yycheader
 #sourceLocation(file: "advanced.re", line: 114)
         return .end
-#sourceLocation(file: "advanced.swift", line: 1072)
+#sourceLocation(file: "advanced.swift", line: 1070)
       case 44:
         if self.yylimit <= self.yycursor {
           yystate = 21
@@ -1313,7 +1311,7 @@ enum YYCondType: Int {
         self.yymarker -= shift
         self.token = 0
         
-#sourceLocation(file: "advanced.swift", line: 1317)
+#sourceLocation(file: "advanced.swift", line: 1315)
         if self.yyt1 != Self.tagNone { self.yyt1 -= shift }
         if self.yyt2 != Self.tagNone { self.yyt2 -= shift }
 #sourceLocation(file: "advanced.re", line: 138)

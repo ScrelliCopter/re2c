@@ -114,7 +114,9 @@ re2c:label:start = 0;
 
 re2c:YYBACKUP = "yybackup";
 re2c:YYBACKUPCTX = "yybackupctx";
-re2c:YYCONDTYPE = "YYCondType";
+// Conditions are assigned to `yystate` in loop/switch mode (which is UInt),
+// but stored state is Int, so try to default to most appropriate type.
+re2c:YYCONDTYPE = (.code_model.loop_switch & !.storable_state ? "UInt" : "Int");
 re2c:YYCOPYMTAG = sigil "{lhs} = " sigil "{rhs}";
 re2c:YYCOPYSTAG = sigil "{lhs} = " sigil "{rhs}";
 re2c:YYCTYPE = "UInt8";
@@ -168,13 +170,9 @@ code:array_global = <undefined>;
 
 code:array_elem = array "[" index "]";
 
-//HACK: Conditions are assigned to `yystate` in loop/switch mode, so underlying type needs to be `UInt`.
-code:enum =
-    "enum " type ": " (.code_model.loop_switch & !.storable_state ? "UInt" : "Int") " {" nl indent
-        [elem: topindent "case " elem (.init ? " = " init) nl]
-    dedent "}" nl;
+code:enum = [elem: topindent "let " elem ": " type " = " init nl];
 
-code:enum_elem = type "." name ".rawValue";
+code:enum_elem = name;
 
 code:assign = topindent lhs " = " rhs nl;
 

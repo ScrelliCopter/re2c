@@ -36,9 +36,9 @@ struct State {
 }
 
 extension State {
-  /*!conditions:re2c*/
-
   mutating func parse() -> Status {
+    /*!conditions:re2c*/
+
     var yych: UInt8 = 0
     var l1: Int, l2: Int
     var f1: MTag? = nil, f2: MTag? = nil

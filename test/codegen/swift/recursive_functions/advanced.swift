@@ -17,10 +17,8 @@ extension FileHandle: @retroactive TextOutputStream {
 }
 
 #sourceLocation(file: "advanced.swift", line: 20)
-enum YYCondType: Int {
-  case yycmedia_type = 1
-  case yycheader = 23
-}
+let yycmedia_type: Int = 1
+let yycheader: Int = 23
 #sourceLocation(file: "advanced.re", line: 17)
 
 let bufferSize = 4096-32-248-1
@@ -33,20 +31,20 @@ class State {
   var marker = bufferSize
   var token  = bufferSize
   var limit  = bufferSize
-  var cond   = YYCondType.yycmedia_type.rawValue
+  var cond   = yycmedia_type
   var state  = -1
   var accept = 0
 
   private var mTagPool = [MTag]()
 
   
-#sourceLocation(file: "advanced.swift", line: 44)
+#sourceLocation(file: "advanced.swift", line: 42)
   var yyt1 = tagNone
   var yyt2 = tagNone
 #sourceLocation(file: "advanced.re", line: 34)
 
   
-#sourceLocation(file: "advanced.swift", line: 50)
+#sourceLocation(file: "advanced.swift", line: 48)
   var yytm1: MTag? = nil
   var yytm10: MTag? = nil
   var yytm2: MTag? = nil
@@ -70,7 +68,7 @@ class State {
 }
 
 
-#sourceLocation(file: "advanced.swift", line: 74)
+#sourceLocation(file: "advanced.swift", line: 72)
 func yy1(_ s: State) -> State.Status {
   let yych = s.buffer[s.cursor]
   switch yych {
@@ -113,7 +111,7 @@ func yy3(_ s: State) -> State.Status {
   s.state = -1
 #sourceLocation(file: "advanced.re", line: 126)
   return .error
-#sourceLocation(file: "advanced.swift", line: 117)
+#sourceLocation(file: "advanced.swift", line: 115)
 }
 
 func yy4(_ s: State) -> State.Status {
@@ -380,7 +378,7 @@ func yy14(_ s: State) -> State.Status {
 
     return .done
 
-#sourceLocation(file: "advanced.swift", line: 384)
+#sourceLocation(file: "advanced.swift", line: 382)
 }
 
 func yy15(_ s: State) -> State.Status {
@@ -619,7 +617,7 @@ func yy22(_ s: State) -> State.Status {
   s.state = -1
 #sourceLocation(file: "advanced.re", line: 125)
   return .end
-#sourceLocation(file: "advanced.swift", line: 623)
+#sourceLocation(file: "advanced.swift", line: 621)
 }
 
 func yyfnmedia_type(_ s: State) -> State.Status {
@@ -661,7 +659,7 @@ func yy25(_ s: State) -> State.Status {
   s.state = -1
 #sourceLocation(file: "advanced.re", line: 126)
   return .error
-#sourceLocation(file: "advanced.swift", line: 665)
+#sourceLocation(file: "advanced.swift", line: 663)
 }
 
 func yy26(_ s: State) -> State.Status {
@@ -963,7 +961,7 @@ func yy38(_ s: State) -> State.Status {
 
     return .done
 
-#sourceLocation(file: "advanced.swift", line: 967)
+#sourceLocation(file: "advanced.swift", line: 965)
 }
 
 func yy39(_ s: State) -> State.Status {
@@ -1076,7 +1074,7 @@ func yy44(_ s: State) -> State.Status {
   s.state = -1
 #sourceLocation(file: "advanced.re", line: 125)
   return .end
-#sourceLocation(file: "advanced.swift", line: 1080)
+#sourceLocation(file: "advanced.swift", line: 1078)
 }
 
 func yyfnheader(_ s: State) -> State.Status {
@@ -1085,8 +1083,8 @@ func yyfnheader(_ s: State) -> State.Status {
 
 func yy0(_ s: State) -> State.Status {
   switch s.cond {
-    case YYCondType.yycmedia_type.rawValue: return yyfnmedia_type(s)
-    case YYCondType.yycheader.rawValue: return yyfnheader(s)
+    case yycmedia_type: return yyfnmedia_type(s)
+    case yycheader: return yyfnheader(s)
     default: fatalError("internal lexer error")
   }
 }
@@ -1308,7 +1306,7 @@ extension State {
         self.marker -= shift
         self.token = 0
         
-#sourceLocation(file: "advanced.swift", line: 1312)
+#sourceLocation(file: "advanced.swift", line: 1310)
         if self.yyt1 != tagNone { self.yyt1 -= shift }
         if self.yyt2 != tagNone { self.yyt2 -= shift }
 #sourceLocation(file: "advanced.re", line: 149)

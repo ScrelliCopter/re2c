@@ -3,7 +3,7 @@
 /*!conditions:re2c*/
 
 func parseUInt32(_ yyinput: UnsafePointer<UInt8>) -> UInt32? {
-  var yycursor = 0, yymarker = 0, yycond = YYCondType.yycinit.rawValue
+  var yycursor = 0, yymarker = 0, yycond = yycinit
 
   var accum: UInt64 = 0
 

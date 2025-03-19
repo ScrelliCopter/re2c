@@ -25,7 +25,7 @@ class State {
   var marker = bufferSize
   var token  = bufferSize
   var limit  = bufferSize
-  var cond   = YYCondType.yycmedia_type.rawValue
+  var cond   = yycmedia_type
   var state  = -1
   var accept = 0
 

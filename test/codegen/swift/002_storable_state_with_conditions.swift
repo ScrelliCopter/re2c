@@ -33,23 +33,20 @@ struct State {
 }
 
 extension State {
-  
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 38)
-enum YYCondType: Int {
-  case yycINIT = 0
-  case yycSPACES = 6
-  case yycNUMBER = 11
-  case yycWORD = 16
-}
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 34)
-
-
   mutating func lex(numbers: inout Int, words: inout Int) -> Status {
+    
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 39)
+let yycINIT: Int = 0
+let yycSPACES: Int = 6
+let yycNUMBER: Int = 11
+let yycWORD: Int = 16
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 35)
+
     var yych: UInt8 = 0
     lex: while true {
       self.token = self.cursor
       
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 53)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 50)
   var yystate: Int = self.state
   yyl: while true {
     switch yystate {
@@ -80,30 +77,30 @@ enum YYCondType: Int {
             continue yyl
         }
       case 1:
-        self.state = YYCondType.yycINIT.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 58)
+        self.state = yycINIT
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 57)
         return .badPacket
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 87)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 84)
       case 2:
         self.cursor += -1
-        self.state = YYCondType.yycSPACES.rawValue
-        yystate = YYCondType.yycSPACES.rawValue
+        self.state = yycSPACES
+        yystate = yycSPACES
         continue yyl
       case 3:
         self.cursor += -1
-        self.state = YYCondType.yycNUMBER.rawValue
-        yystate = YYCondType.yycNUMBER.rawValue
+        self.state = yycNUMBER
+        yystate = yycNUMBER
         continue yyl
       case 4:
         self.cursor += -1
-        self.state = YYCondType.yycWORD.rawValue
-        yystate = YYCondType.yycWORD.rawValue
+        self.state = yycWORD
+        yystate = yycWORD
         continue yyl
       case 5:
-        self.state = YYCondType.yycINIT.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 59)
+        self.state = yycINIT
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 58)
         return .end
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 107)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 104)
       case 6:
         yych = self.buffer[self.cursor]
         switch yych {
@@ -123,10 +120,10 @@ enum YYCondType: Int {
             continue yyl
         }
       case 7:
-        self.state = YYCondType.yycSPACES.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 58)
+        self.state = yycSPACES
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 57)
         return .badPacket
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 130)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 127)
       case 8:
         yych = self.buffer[self.cursor]
         switch yych {
@@ -145,15 +142,15 @@ enum YYCondType: Int {
             continue yyl
         }
       case 9:
-        self.state = YYCondType.yycINIT.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 65)
+        self.state = yycINIT
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 64)
         continue lex
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 152)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 149)
       case 10:
-        self.state = YYCondType.yycSPACES.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 59)
+        self.state = yycSPACES
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 58)
         return .end
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 157)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 154)
       case 11:
         yych = self.buffer[self.cursor]
         switch yych {
@@ -171,10 +168,10 @@ enum YYCondType: Int {
             continue yyl
         }
       case 12:
-        self.state = YYCondType.yycNUMBER.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 58)
+        self.state = yycNUMBER
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 57)
         return .badPacket
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 178)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 175)
       case 13:
         yych = self.buffer[self.cursor]
         switch yych {
@@ -191,18 +188,18 @@ enum YYCondType: Int {
             continue yyl
         }
       case 14:
-        self.state = YYCondType.yycSPACES.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 67)
+        self.state = yycSPACES
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 66)
         
           numbers += 1
           continue lex
 
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 201)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 198)
       case 15:
-        self.state = YYCondType.yycNUMBER.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 59)
+        self.state = yycNUMBER
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 58)
         return .end
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 206)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 203)
       case 16:
         yych = self.buffer[self.cursor]
         switch yych {
@@ -220,10 +217,10 @@ enum YYCondType: Int {
             continue yyl
         }
       case 17:
-        self.state = YYCondType.yycWORD.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 58)
+        self.state = yycWORD
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 57)
         return .badPacket
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 227)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 224)
       case 18:
         yych = self.buffer[self.cursor]
         switch yych {
@@ -240,18 +237,18 @@ enum YYCondType: Int {
             continue yyl
         }
       case 19:
-        self.state = YYCondType.yycSPACES.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 71)
+        self.state = yycSPACES
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 70)
         
           words += 1
           continue lex
 
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 250)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 247)
       case 20:
-        self.state = YYCondType.yycWORD.rawValue
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 59)
+        self.state = yycWORD
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 58)
         return .end
-#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 255)
+#sourceLocation(file: "002_storable_state_with_conditions.swift", line: 252)
       case 21:
         if self.limit <= self.cursor {
           yystate = 5
@@ -304,7 +301,7 @@ enum YYCondType: Int {
       default: fatalError("internal lexer error")
     }
   }
-#sourceLocation(file: "002_storable_state_with_conditions.re", line: 75)
+#sourceLocation(file: "002_storable_state_with_conditions.re", line: 74)
 
     }
     fatalError("unreachable")

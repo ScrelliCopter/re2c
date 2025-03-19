@@ -31,9 +31,8 @@ struct State {
 }
 
 extension State {
-  /*!conditions:re2c*/
-
   mutating func lex(numbers: inout Int, words: inout Int) -> Status {
+    /*!conditions:re2c*/
     var yych: UInt8 = 0
     lex: while true {
       self.token = self.cursor

@@ -24,8 +24,7 @@ program:
 
 **Generic API**
     This is the most flexible API and the default API for the Swift backend.
-    It is enabled with the ``--api generic`` option or ``re2c:api = generic``
-    configuration. It contains primitives for generic operations:
+    It contains primitives for generic operations:
     ``YYPEEK``,
     ``YYSKIP``,
     ``YYBACKUP``,
@@ -41,56 +40,24 @@ program:
     ``YYSHIFTSTAG``,
     ``YYSHIFTMTAG``,
     ``YYLESSTHAN``.
-    The Generic API supports two styles that determine the form in which
-    the primitives should be defined:
+    For example, if the input is a zero-terminated array of bytes
+    ``buffer: [UInt8]``, variables ``cursor``, ``limit``, ``marker`` and
+    ``ctxmarker`` of type ``Int`` represent input positions, and ``-1``
+    represents invalid positions, then a generic API can be defined as follows:
 
-    |
+    .. code-block:: swift
 
-    **Free-form**
-        Free-form style is the default one. It can also be enabled with
-        the configuration ``re2c:api:style = free-form``.
-        In this style interface primitives should be defined as free-form
-        pieces of code with interpolated variables of the form ``@@{var}`` or
-        optionally just ``@@`` if there is a single variable. The set of
-        variables is specific to each primitive. Here's how free-form generic
-        API can be defined in terms of pointers ``cursor``, ``limit``,
-        ``marker`` and ``ctxmarker``:
-
-        .. code-block:: swift
-
-            /*!re2c
-              re2c:YYPEEK       = "buffer[cursor]";
-              re2c:YYSKIP       = "cursor++";
-              re2c:YYBACKUP     = "marker = cursor";
-              re2c:YYRESTORE    = "cursor = marker";
-              re2c:YYBACKUPCTX  = "ctxmarker = cursor";
-              re2c:YYRESTORECTX = "cursor = ctxmarker";
-              re2c:YYRESTORETAG = "cursor = ${tag}";
-              re2c:YYLESSTHAN   = "limit - cursor < @@{len}";
-              re2c:YYSTAGP      = "@@{tag} = cursor";
-              re2c:YYSTAGN      = "@@{tag} = -1";
-              re2c:YYSHIFT      = "cursor += @@{shift}";
-              re2c:YYSHIFTSTAG  = "@@{tag} += @@{shift}";
-            */
-
-        |
-
-    **Function-like**
-        Function-like style is enabled with the configuration
-        ``re2c:api:style = functions``.
-        In this style primitives should be defined as functions or closures,
-        accepting the necessary arguments. Here's how a function-like generic
-        API can be defined in terms of pointers ``cursor``, ``limit``,
-        ``marker`` and ``ctxmarker`` using closures:
-
-        .. code-block:: swift
-
-            let yypeek       = { buffer[cursor] }
-            let yyskip       = { cursor += 1 }
-            let yybackup     = { marker = cursor }
-            let yyrestore    = { cursor = marker }
-            let yybackupctx  = { ctxmarker = cursor }
-            let yyrestorectx = { cursor = ctxmarker }
-            let yyrestoretag = { tag in cursor = tag }
-            let yylessthan   = { len in limit - cursor < len }
-            let yyshift      = { shift in cursor += shift }
+        /*!re2c
+          re2c:YYPEEK       = "buffer[cursor]";
+          re2c:YYSKIP       = "cursor++";
+          re2c:YYBACKUP     = "marker = cursor";
+          re2c:YYRESTORE    = "cursor = marker";
+          re2c:YYBACKUPCTX  = "ctxmarker = cursor";
+          re2c:YYRESTORECTX = "cursor = ctxmarker";
+          re2c:YYRESTORETAG = "cursor = ${tag}";
+          re2c:YYLESSTHAN   = "limit - cursor < @@{len}";
+          re2c:YYSTAGP      = "@@{tag} = cursor";
+          re2c:YYSTAGN      = "@@{tag} = -1";
+          re2c:YYSHIFT      = "cursor += @@{shift}";
+          re2c:YYSHIFTSTAG  = "@@{tag} += @@{shift}";
+        */
