@@ -25,31 +25,14 @@ for f in $(find . -name '*.re'); do
         head -n $l "$swifttest" > "$swifttest".mod && mv "$swifttest".mod "$swifttest"
     fi
 
-    extra_args="-g"
-    echo "${f#'./'}"
-
-    # Header test needs to build an extra module
-    mod_dir=""
-    mod=""
+    # Header test needs an extra source
+    sources=$swifttest
     header=$(grep -Eo -- '--header [^ ]+' "$swifttest")
-    if [ "$?" -eq 0 ]; then
-        header=$(echo "$header" | sed -E 's/--header ([^ ]*).*/\1/')
-        header_src=$(basename "$header")
-        mod_dir=$(dirname "$header")
-        mod=${mod_dir##*/}
-        cd $mod_dir
-        swiftc $extra_args -emit-module -emit-library -static -module-name $mod "$header_src" || { echo "*** error ***"; exit 1; }
-        extra_args="$extra_args -L$mod_dir -I$mod_dir -l$mod"
-        cd "$root_dir/$(dirname $f)"
-    fi
+    [ "$?" -eq 0 ] && sources="$sources ${header#'--header '}"
 
-    swiftc $extra_args -o example "$swifttest" && ./example 2>/dev/null || { echo "*** error ***"; exit 1; }
+    echo "${f#'./'}"
+    swiftc -g -o example $sources && ./example 2>/dev/null || { echo "*** error ***"; exit 1; }
 
-    # Clean up build artifacts.
-    if [ -n "$mod" ]; then
-        rm -f "$mod_dir/lib$mod.a"
-        for ext in o abi.json swiftdoc swiftmodule swiftsourceinfo; do rm -f "$mod_dir/$mod.$ext"; done
-    fi
     rm -f "$swifttest" example
     [ -d "example.dSYM" ] && rm -r example.dSYM
     cd $root_dir
