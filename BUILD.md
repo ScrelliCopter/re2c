@@ -213,6 +213,10 @@ specific to re2c:
     Build re2rust executable (an alias to `re2c --lang rust`). Enabled by
     default.
 
+  * `-DRE2C_BUILD_RE2SWIFT=yes`
+    Build re2swift executable (an alias to `re2c --lang swift`). Enabled by
+    default.
+
   * `-DRE2C_BUILD_RE2V=yes`
     Build re2v executable (an alias to `re2c --lang v`). Enabled by default.
 
